@@ -184,6 +184,12 @@ img { max-width:100%; display:block; }
   background:color-mix(in srgb,var(--mauve) 14%,transparent); padding:3px 9px; border-radius:999px; }
 .shot.wide { grid-column:1/-1; }
 .shot.wide img { aspect-ratio:auto; max-height:520px; object-fit:contain; background:var(--crust); }
+.theme-cats { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px; margin-top:28px; }
+.theme-cat { text-align:center; padding:14px 10px; border-radius:var(--radius);
+  background:color-mix(in srgb, var(--mantle) 90%, transparent); border:1px solid var(--surface0); transition:.18s; }
+.theme-cat:hover { border-color:var(--mauve); transform:translateY(-4px); }
+.theme-cat img { width:72px; height:72px; margin:0 auto 8px; }
+.theme-cat span { display:block; font-size:12.5px; font-weight:600; color:var(--subtext0); }
 
 /* ---------------- Tecnologías ---------------- */
 .tech { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }

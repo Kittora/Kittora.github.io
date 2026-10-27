@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiquidCat — Download &amp; convert media · Kittora</title>
-  <meta name="description" content="LiquidCat by Kittora — download and convert video/audio with yt-dlp + FFmpeg, GPU acceleration, queue, history and 15 themes. All-in-one, no setup.">
+  <meta name="description" content="LiquidCat by Kittora — a native Rust desktop app to download, convert and re-encode media with yt-dlp + FFmpeg. GPU acceleration, batch import, queue, 14 themes and 6 languages. Windows, Linux and macOS.">
   <link rel="icon" href="images/LiquidCat-Logo.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -33,13 +33,14 @@
     <p class="lede" data-i18n="lc.sub">From a YouTube link to a finished MP4 or MP3 — LiquidCat handles downloading, converting and re-encoding in one place.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" data-download-liquidcat href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg> <span data-i18n="lc.dl_btn">Download LiquidCat</span></a>
-      <a class="btn btn-ghost btn-lg" href="https://github.com/xjuanfxx/LiquidCat" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost btn-lg" href="https://github.com/Kittora/LiquidCat" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="hero-badges">
-      <span class="badge">yt-dlp + FFmpeg</span>
+      <span class="badge"><b>v<span data-version data-product="liquidcat">0.4.4</span></b></span>
+      <span class="badge">Native Rust + Slint</span>
       <span class="badge">GPU accelerated</span>
-      <span class="badge">15 themes</span>
-      <span class="badge">Free &amp; open-source</span>
+      <span class="badge">Windows · Linux · macOS</span>
+      <span class="badge">Free &amp; open-source (GPL-3.0)</span>
     </div>
   </header>
 
@@ -51,31 +52,49 @@
         <p data-i18n="lc.feat_sub">From a YouTube link to a finished MP4 or MP3 — LiquidCat handles downloading, converting and re-encoding in one place.</p>
       </div>
       <div class="grid c3">
-        <div class="card reveal" data-i18n-html="lc.c1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg></div><h3>Download anything</h3><p>Grab video or audio from YouTube and hundreds of sites.</p></div>
-        <div class="card reveal" data-i18n-html="lc.c2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><h3>Video → Audio</h3><p>Convert any video to MP3, M4A, FLAC, WAV, AAC, Opus or Ogg.</p></div>
-        <div class="card reveal" data-i18n-html="lc.c3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9zM2 9h3M2 15h3M19 9h3M19 15h3M9 2v3M15 2v3M9 19v3M15 19v3"/></svg></div><h3>GPU accelerated</h3><p>Hardware encoding with NVENC / AMF for fast re-encodes.</p></div>
-        <div class="card reveal" data-i18n-html="lc.c4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></svg></div><h3>Queue &amp; history</h3><p>Line up jobs, download playlists and revisit past files.</p></div>
-        <div class="card reveal" data-i18n-html="lc.c5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18h1.5a1.5 1.5 0 0 0 0-3H12a2 2 0 0 1 0-4h2a7 7 0 0 0 0-14z"/><circle cx="7.5" cy="10" r="1"/><circle cx="9" cy="6.5" r="1"/><circle cx="14" cy="6.5" r="1"/><circle cx="17" cy="10" r="1"/></svg></div><h3>15 themes</h3><p>Catppuccin, Tokyo Night, Nord, Fluent, Neo Brutalist &amp; more.</p></div>
-        <div class="card reveal" data-i18n-html="lc.c6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5zM3 8v8l9 5 9-5V8"/></svg></div><h3>All-in-one</h3><p>FFmpeg and yt-dlp ship inside — nothing to install separately.</p></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg></div><div data-i18n-html="lc.c1"><h3>Download anything</h3><p>Grab video or audio from YouTube and hundreds of sites. Paste many links at once or load them from a .txt.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><div data-i18n-html="lc.c2"><h3>Convert &amp; re-encode</h3><p>Turn video into MP3, M4A, FLAC, WAV, AAC, Opus or Ogg, re-encode local files and trim a segment.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9zM2 9h3M2 15h3M19 9h3M19 15h3M9 2v3M15 2v3M9 19v3M15 19v3"/></svg></div><div data-i18n-html="lc.c3"><h3>GPU accelerated</h3><p>Hardware encoding with NVENC, AMF, Intel Quick Sync, VAAPI or VideoToolbox, detected automatically.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></svg></div><div data-i18n-html="lc.c4"><h3>Queue, history &amp; presets</h3><p>Line up jobs, follow them in the floating Activity card and start from eight built-in presets.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18h1.5a1.5 1.5 0 0 0 0-3H12a2 2 0 0 1 0-4h2a7 7 0 0 0 0-14z"/><circle cx="7.5" cy="10" r="1"/><circle cx="9" cy="6.5" r="1"/><circle cx="14" cy="6.5" r="1"/><circle cx="17" cy="10" r="1"/></svg></div><div data-i18n-html="lc.c5"><h3>14 themes, 6 languages</h3><p>Catppuccin, Tokyo Night, Nord, Gruvbox, Neo Brutalist &amp; more, each with its own cat. EN, ES, PT, FR, DE, IT.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5zM3 8v8l9 5 9-5V8"/></svg></div><div data-i18n-html="lc.c6"><h3>Native &amp; lightweight</h3><p>Rewritten in Rust with Slint and GPU rendering. ~60 MB at idle, no WebView, and yt-dlp / FFmpeg are kept up to date for you.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Temas -->
+  <!-- Capturas y temas -->
   <section class="section alt">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2 data-i18n-html="lc.themes_h">Fifteen <span class="hl">themes</span>, one vibe</h2>
-        <p data-i18n-html="lc.themes_sub">LiquidCat ships with 15 built-in looks. The default is the soft, glassy <strong>Catppuccin</strong> — click any shot to enlarge.</p>
+        <h2 data-i18n-html="lc.shots_h">Take a <span class="hl">look</span></h2>
+        <p data-i18n="lc.shots_sub">LiquidCat 0.4 with the default Catppuccin Mocha theme — click any shot to enlarge.</p>
       </div>
       <div class="shots">
-        <div class="shot reveal"><img data-zoom src="images/Catppuccin.png" alt="Catppuccin theme"><div class="cap"><b>Catppuccin</b></div></div>
-        <div class="shot reveal"><img data-zoom src="images/Dracula.png" alt="Dracula theme"><div class="cap"><b>Dracula</b></div></div>
-        <div class="shot reveal"><img data-zoom src="images/AMOLED.png" alt="AMOLED theme"><div class="cap"><b>AMOLED</b></div></div>
-        <div class="shot reveal"><img data-zoom src="images/Dark.png" alt="Dark theme"><div class="cap"><b>Dark</b></div></div>
-        <div class="shot reveal"><img data-zoom src="images/Light.png" alt="Light theme"><div class="cap"><b>Light</b></div></div>
-        <div class="shot reveal"><img data-zoom src="images/Neo%20Brutalist%20Light.png" alt="Neo Brutalist Light"><div class="cap"><b>Neo Brutalist Light</b></div></div>
-        <div class="shot reveal wide"><img data-zoom src="images/Neo%20Brutalist%20Dark.png" alt="Neo Brutalist Dark"><div class="cap"><b>Neo Brutalist Dark</b></div></div>
+        <div class="shot reveal wide"><img data-zoom src="images/liquidcat/downloader.png" alt="LiquidCat downloader with a video preview"><div class="cap"><b data-i18n="lc.shot1">Downloader</b></div></div>
+        <div class="shot reveal"><img data-zoom src="images/liquidcat/converter.png" alt="LiquidCat local files with the floating Activity card"><div class="cap"><b data-i18n="lc.shot2">Local files</b></div></div>
+        <div class="shot reveal"><img data-zoom src="images/liquidcat/queue-history.png" alt="LiquidCat queue and activity"><div class="cap"><b data-i18n="lc.shot3">Queue &amp; activity</b></div></div>
+        <div class="shot reveal"><img data-zoom src="images/liquidcat/settings.png" alt="LiquidCat settings with themes"><div class="cap"><b data-i18n="lc.shot4">Settings</b></div></div>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:56px">
+        <h2 data-i18n-html="lc.themes_h">Fourteen <span class="hl">themes</span>, fourteen cats</h2>
+        <p data-i18n="lc.themes_sub">Every theme comes with its own cat icon. Pick one in Settings and the whole app follows.</p>
+      </div>
+      <div class="theme-cats">
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/catppuccin.png" alt="" loading="lazy"><span>Catppuccin Mocha</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/catppuccin-macchiato.png" alt="" loading="lazy"><span>Catppuccin Macchiato</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/catppuccin-frappe.png" alt="" loading="lazy"><span>Catppuccin Frappé</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/catppuccin-latte.png" alt="" loading="lazy"><span>Catppuccin Latte</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/dracula.png" alt="" loading="lazy"><span>Dracula</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/amoled.png" alt="" loading="lazy"><span>AMOLED</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/dark.png" alt="" loading="lazy"><span>Dark</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/light.png" alt="" loading="lazy"><span>Light</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/fluent.png" alt="" loading="lazy"><span>Fluent</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/gruvbox.png" alt="" loading="lazy"><span>Gruvbox</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/nord.png" alt="" loading="lazy"><span>Nord</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/tokyo-night.png" alt="" loading="lazy"><span>Tokyo Night</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/neo-brutalist-light.png" alt="" loading="lazy"><span>Neo Brutalist Light</span></div>
+        <div class="theme-cat reveal"><img src="images/liquidcat/themes/neo-brutalist-dark.png" alt="" loading="lazy"><span>Neo Brutalist Dark</span></div>
       </div>
     </div>
   </section>
@@ -85,13 +104,15 @@
     <div class="wrap">
       <div class="section-head reveal">
         <h2 data-i18n-html="lc.tech_h">Built on great <span class="hl">open source</span></h2>
-        <p data-i18n="lc.tech_sub">LiquidCat integrates and distributes these projects under their respective licenses.</p>
+        <p data-i18n="lc.tech_sub">LiquidCat is built with these projects and uses them under their respective licenses.</p>
       </div>
       <div class="tech reveal">
+        <a class="chip" href="https://www.rust-lang.org" target="_blank" rel="noopener"><b>Rust</b><span>MIT / Apache-2.0</span></a>
+        <a class="chip" href="https://slint.dev" target="_blank" rel="noopener"><b>Slint</b><span>GPL-3.0</span></a>
         <a class="chip" href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener"><b>yt-dlp</b><span>Unlicense</span></a>
-        <a class="chip" href="https://gyan.dev/ffmpeg/builds" target="_blank" rel="noopener"><b>FFmpeg</b><span>GPL v3</span></a>
-        <a class="chip" href="https://pywebview.flowrl.com" target="_blank" rel="noopener"><b>pywebview</b><span>BSD-3-Clause</span></a>
+        <a class="chip" href="https://ffmpeg.org" target="_blank" rel="noopener"><b>FFmpeg</b><span>GPL</span></a>
         <a class="chip" href="https://catppuccin.com" target="_blank" rel="noopener"><b>Catppuccin</b><span>MIT</span></a>
+        <a class="chip" href="https://github.com/itfoundry/Poppins" target="_blank" rel="noopener"><b>Poppins</b><span>OFL 1.1</span></a>
       </div>
     </div>
   </section>
@@ -102,7 +123,7 @@
       <div class="card reveal">
         <img class="cta-cat" src="images/tap-tap-cat.gif" alt="" aria-hidden="true">
         <h2 data-i18n-html="lc.dl_h">Get <span class="hl">LiquidCat</span></h2>
-        <p data-i18n="lc.dl_p">Portable, all-in-one and free. Windows 10 / 11 (64-bit).</p>
+        <p data-i18n="lc.dl_p">Free and open source. Windows 10 / 11 (64-bit), plus experimental Linux and macOS builds. No Python needed.</p>
         <a class="btn btn-primary btn-lg" data-download-liquidcat href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg> <span data-i18n="lc.dl_btn">Download LiquidCat</span></a>
       </div>
       <p class="notice" data-i18n="notice.legal">This software is not affiliated with nor endorsed by the projects it integrates. Each product uses its tools as dependencies under their respective licenses.</p>

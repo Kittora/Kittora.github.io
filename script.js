@@ -1,8 +1,8 @@
 /* Kittora — sitio web oficial (compartido por todas las páginas) */
-const LIQUIDCAT_VERSION = "2.0.0";
+const LIQUIDCAT_VERSION = "0.4.4";
 const MEOWGNIFY_VERSION = "1.0.0";
 // Cambia estas URLs si los repositorios de releases cambian.
-const LIQUIDCAT_DOWNLOAD = "https://github.com/xjuanfxx/LiquidCat/releases/latest";
+const LIQUIDCAT_DOWNLOAD = "https://github.com/Kittora/LiquidCat/releases/latest";
 const MEOWGNIFY_DOWNLOAD = "https://github.com/Kittora";
 const KITTORA_GH = "https://github.com/Kittora";
 const KITTORA_WEB = "https://kittora.dev";
@@ -26,8 +26,8 @@ const I18N_ES = {
   "home.products_h":"Nuestros <span class=\"hl\">productos</span>",
   "home.products_sub":"Dos apps, una misma filosofía: poderosas por dentro, simples por fuera.",
   "home.lc_h":"LiquidCat",
-  "home.lc_p":"Descarga y convierte video y audio en una sola app. Impulsado por yt-dlp y FFmpeg, con aceleración por GPU, cola, historial y 15 temas.",
-  "home.lc_tags":"Descarga · Conversión · GPU · 15 temas",
+  "home.lc_p":"Descarga, convierte y reencodea video y audio en una app nativa escrita en Rust. Impulsado por yt-dlp y FFmpeg, con aceleración por GPU, cola, 14 temas y 6 idiomas. Windows, Linux y macOS.",
+  "home.lc_tags":"Descarga · Conversión · GPU · 14 temas",
   "home.mw_h":"Meowgnify",
   "home.mw_p":"Reescala videos e imágenes con IA y shaders por GPU. Real-ESRGAN, Real-CUGAN, Waifu2x, Anime4K y Upscayl con comparación antes/después.",
   "home.mw_tags":"Upscaler · IA · GPU · Imágenes y video",
@@ -46,20 +46,23 @@ const I18N_ES = {
   "lc.eyebrow":"PRODUCTO · LIQUIDCAT",
   "lc.h":"Descarga y convierte <span class=\"hl\">medios</span> en una app",
   "lc.sub":"De un enlace de YouTube a un MP4 o MP3 terminado: LiquidCat gestiona la descarga, la conversión y el reencode en un solo lugar.",
-  "lc.c1":"<h3>Descarga lo que sea</h3><p>Baja video o audio de YouTube y cientos de sitios compatibles con yt-dlp.</p>",
-  "lc.c2":"<h3>Video → Audio</h3><p>Convierte cualquier video a MP3, M4A, FLAC, WAV, AAC, Opus u Ogg en un clic.</p>",
-  "lc.c3":"<h3>Acelerado por GPU</h3><p>Codificación por hardware con NVENC / AMF para reencodes veloces vía FFmpeg.</p>",
-  "lc.c4":"<h3>Cola e historial</h3><p>Encola varios trabajos, descarga playlists completas y revisa archivos anteriores.</p>",
-  "lc.c5":"<h3>15 temas</h3><p>Catppuccin, Tokyo Night, Nord, Fluent, Neo Brutalist y más, con Liquid Glass por defecto.</p>",
-  "lc.c6":"<h3>Todo en uno</h3><p>FFmpeg y yt-dlp vienen dentro; no hay que instalar nada por separado.</p>",
+  "lc.c1":"<h3>Descarga lo que sea</h3><p>Baja video o audio de YouTube y cientos de sitios. Pega muchos enlaces a la vez o cárgalos desde un .txt.</p>",
+  "lc.c2":"<h3>Convierte y reencodea</h3><p>Pasa video a MP3, M4A, FLAC, WAV, AAC, Opus u Ogg, reencodea archivos locales y recorta un fragmento.</p>",
+  "lc.c3":"<h3>Acelerado por GPU</h3><p>Codificación por hardware con NVENC, AMF, Intel Quick Sync, VAAPI o VideoToolbox, detectada automáticamente.</p>",
+  "lc.c4":"<h3>Cola, historial y presets</h3><p>Encola trabajos, síguelos en la tarjeta flotante de Actividad y empieza con ocho presets incluidos.</p>",
+  "lc.c5":"<h3>14 temas, 6 idiomas</h3><p>Catppuccin, Tokyo Night, Nord, Gruvbox, Neo Brutalist y más, cada uno con su propio gato. EN, ES, PT, FR, DE, IT.</p>",
+  "lc.c6":"<h3>Nativo y ligero</h3><p>Reescrito en Rust con Slint y renderizado por GPU. ~60 MB en reposo, sin WebView, y yt-dlp / FFmpeg se mantienen actualizados solos.</p>",
   "lc.dl_h":"Obtén <span class=\"hl\">LiquidCat</span>",
-  "lc.dl_p":"Portable, todo en uno y gratis. Windows 10 / 11 (64 bits).",
+  "lc.dl_p":"Gratis y de código abierto. Windows 10 / 11 (64 bits), con builds experimentales para Linux y macOS. No necesita Python.",
   "lc.dl_btn":"Descargar LiquidCat",
   "lc.dl_source":"¿Prefieres el código? Encuéntralo en el GitHub de los creadores.",
   "lc.tech_h":"Construido sobre gran <span class=\"hl\">open source</span>",
-  "lc.tech_sub":"LiquidCat integra y distribuye estos proyectos según sus respectivas licencias.",
-  "lc.themes_h":"Quince <span class=\"hl\">temas</span>, una misma vibra",
-  "lc.themes_sub":"LiquidCat incluye 15 estilos. El predeterminado es el suave y glossy <strong>Catppuccin</strong>; haz clic en cualquier captura para ampliarla.",
+  "lc.tech_sub":"LiquidCat está construido con estos proyectos y los usa según sus respectivas licencias.",
+  "lc.shots_h":"Echa un <span class=\"hl\">vistazo</span>",
+  "lc.shots_sub":"LiquidCat 0.4 con el tema predeterminado Catppuccin Mocha; haz clic en cualquier captura para ampliarla.",
+  "lc.shot1":"Descargador", "lc.shot2":"Archivos locales", "lc.shot3":"Cola y actividad", "lc.shot4":"Ajustes",
+  "lc.themes_h":"Catorce <span class=\"hl\">temas</span>, catorce gatos",
+  "lc.themes_sub":"Cada tema trae su propio icono de gato. Elige uno en Ajustes y toda la app lo sigue.",
   "lc.feat_h":"Todo lo que necesitas para <span class=\"hl\">bajar y convertir</span> medios",
   "lc.feat_sub":"De un enlace de YouTube a un MP4 o MP3 terminado: LiquidCat gestiona la descarga, la conversión y el reencode en un solo lugar.",
 
@@ -91,7 +94,9 @@ const I18N_ES = {
   "cr.thanks":"¡Gracias por apoyar a Kittora! 💜",
   "cr.ytdlp_p":"Descargador de medios de YouTube y cientos de sitios más.",
   "cr.pywebview_p":"Ventana/base web nativa para la interfaz.",
-  "cr.catppuccin_p":"Esquema de colores usado en la interfaz."
+  "cr.catppuccin_p":"Esquema de colores usado en la interfaz.",
+  "cr.slint_p":"Toolkit de interfaz nativa con el que está hecho LiquidCat.",
+  "cr.ffmpeg_p":"Conversión, reencode y recorte de medios. LiquidCat lo descarga desde sus fuentes oficiales."
 };
 
 function applyLang(lang) {
