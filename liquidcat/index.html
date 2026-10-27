@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiquidCat — Download &amp; convert media · Kittora</title>
+  <meta name="description" content="LiquidCat by Kittora — a native Rust desktop app to download, convert and re-encode media with yt-dlp + FFmpeg. GPU acceleration, batch import, queue, 14 themes and 6 languages. Windows, Linux and macOS.">
+  <link rel="icon" href="/images/LiquidCat-Logo.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-title-es="LiquidCat — Descarga y convierte medios · Kittora">
+  <nav class="nav"><div class="nav-inner">
+    <a class="brand" href="/"><img src="/images/Kittora-Logo.png" alt="Kittora logo"><span>Kitt<b>ora</b></span></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="/liquidcat/" class="active" data-i18n="nav.liquidcat">LiquidCat</a>
+      <a href="/meowgnify/" data-i18n="nav.meowgnify">Meowgnify</a>
+      <a href="/credits/" data-i18n="nav.credits">Credits</a>
+      <a class="nav-gh" href="https://github.com/Kittora" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> GitHub</a>
+      <button class="lang-btn" id="langBtn" aria-label="Language / Idioma">ES</button>
+    </div>
+  </div></nav>
+
+  <header class="hero">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    <img class="mascot m-left" src="/images/eating-cat.gif" alt="" aria-hidden="true">
+    <img class="mascot m-right" src="/images/stretch-cat.gif" alt="" aria-hidden="true">
+    <img class="hero-logo" src="/images/LiquidCat-Logo.png" alt="LiquidCat logo">
+    <div class="eyebrow" style="margin-top:18px" data-i18n="lc.eyebrow">PRODUCT · LIQUIDCAT</div>
+    <h1>LiquidCat</h1>
+    <p class="tagline" data-i18n-html="lc.h">Download &amp; convert <span class="hl">media</span> in one app</p>
+    <p class="lede" data-i18n="lc.sub">From a YouTube link to a finished MP4 or MP3 — LiquidCat handles downloading, converting and re-encoding in one place.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" data-download-liquidcat href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg> <span data-i18n="lc.dl_btn">Download LiquidCat</span></a>
+      <a class="btn btn-ghost btn-lg" href="https://github.com/Kittora/LiquidCat" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge"><b>v<span data-version data-product="liquidcat">0.4.4</span></b></span>
+      <span class="badge">Native Rust + Slint</span>
+      <span class="badge">GPU accelerated</span>
+      <span class="badge">Windows · Linux · macOS</span>
+      <span class="badge">Free &amp; open-source (GPL-3.0)</span>
+    </div>
+  </header>
+
+  <!-- Características -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-i18n-html="lc.feat_h">Everything you need to <span class="hl">grab &amp; convert</span> media</h2>
+        <p data-i18n="lc.feat_sub">From a YouTube link to a finished MP4 or MP3 — LiquidCat handles downloading, converting and re-encoding in one place.</p>
+      </div>
+      <div class="grid c3">
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg></div><div data-i18n-html="lc.c1"><h3>Download anything</h3><p>Grab video or audio from YouTube and hundreds of sites. Paste many links at once or load them from a .txt.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><div data-i18n-html="lc.c2"><h3>Convert &amp; re-encode</h3><p>Turn video into MP3, M4A, FLAC, WAV, AAC, Opus or Ogg, re-encode local files and trim a segment.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9zM2 9h3M2 15h3M19 9h3M19 15h3M9 2v3M15 2v3M9 19v3M15 19v3"/></svg></div><div data-i18n-html="lc.c3"><h3>GPU accelerated</h3><p>Hardware encoding with NVENC, AMF, Intel Quick Sync, VAAPI or VideoToolbox, detected automatically.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></svg></div><div data-i18n-html="lc.c4"><h3>Queue, history &amp; presets</h3><p>Line up jobs, follow them in the floating Activity card and start from eight built-in presets.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18h1.5a1.5 1.5 0 0 0 0-3H12a2 2 0 0 1 0-4h2a7 7 0 0 0 0-14z"/><circle cx="7.5" cy="10" r="1"/><circle cx="9" cy="6.5" r="1"/><circle cx="14" cy="6.5" r="1"/><circle cx="17" cy="10" r="1"/></svg></div><div data-i18n-html="lc.c5"><h3>14 themes, 6 languages</h3><p>Catppuccin, Tokyo Night, Nord, Gruvbox, Neo Brutalist &amp; more, each with its own cat. EN, ES, PT, FR, DE, IT.</p></div></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5zM3 8v8l9 5 9-5V8"/></svg></div><div data-i18n-html="lc.c6"><h3>Native &amp; lightweight</h3><p>Rewritten in Rust with Slint and GPU rendering. ~60 MB at idle, no WebView, and yt-dlp / FFmpeg are kept up to date for you.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capturas y temas -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-i18n-html="lc.shots_h">Take a <span class="hl">look</span></h2>
+        <p data-i18n="lc.shots_sub">LiquidCat 0.4 with the default Catppuccin Mocha theme — click any shot to enlarge.</p>
+      </div>
+      <div class="shots">
+        <div class="shot reveal wide"><img data-zoom src="/images/liquidcat/downloader.png" alt="LiquidCat downloader with a video preview"><div class="cap"><b data-i18n="lc.shot1">Downloader</b></div></div>
+        <div class="shot reveal"><img data-zoom src="/images/liquidcat/converter.png" alt="LiquidCat local files with the floating Activity card"><div class="cap"><b data-i18n="lc.shot2">Local files</b></div></div>
+        <div class="shot reveal"><img data-zoom src="/images/liquidcat/queue-history.png" alt="LiquidCat queue and activity"><div class="cap"><b data-i18n="lc.shot3">Queue &amp; activity</b></div></div>
+        <div class="shot reveal"><img data-zoom src="/images/liquidcat/settings.png" alt="LiquidCat settings with themes"><div class="cap"><b data-i18n="lc.shot4">Settings</b></div></div>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:56px">
+        <h2 data-i18n-html="lc.themes_h">Fourteen <span class="hl">themes</span>, fourteen cats</h2>
+        <p data-i18n="lc.themes_sub">Every theme comes with its own cat icon. Pick one in Settings and the whole app follows.</p>
+      </div>
+      <div class="theme-cats">
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/catppuccin.png" alt="" loading="lazy"><span>Catppuccin Mocha</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/catppuccin-macchiato.png" alt="" loading="lazy"><span>Catppuccin Macchiato</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/catppuccin-frappe.png" alt="" loading="lazy"><span>Catppuccin Frappé</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/catppuccin-latte.png" alt="" loading="lazy"><span>Catppuccin Latte</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/dracula.png" alt="" loading="lazy"><span>Dracula</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/amoled.png" alt="" loading="lazy"><span>AMOLED</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/dark.png" alt="" loading="lazy"><span>Dark</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/light.png" alt="" loading="lazy"><span>Light</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/fluent.png" alt="" loading="lazy"><span>Fluent</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/gruvbox.png" alt="" loading="lazy"><span>Gruvbox</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/nord.png" alt="" loading="lazy"><span>Nord</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/tokyo-night.png" alt="" loading="lazy"><span>Tokyo Night</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/neo-brutalist-light.png" alt="" loading="lazy"><span>Neo Brutalist Light</span></div>
+        <div class="theme-cat reveal"><img src="/images/liquidcat/themes/neo-brutalist-dark.png" alt="" loading="lazy"><span>Neo Brutalist Dark</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-i18n-html="lc.tech_h">Built on great <span class="hl">open source</span></h2>
+        <p data-i18n="lc.tech_sub">LiquidCat is built with these projects and uses them under their respective licenses.</p>
+      </div>
+      <div class="tech reveal">
+        <a class="chip" href="https://www.rust-lang.org" target="_blank" rel="noopener"><b>Rust</b><span>MIT / Apache-2.0</span></a>
+        <a class="chip" href="https://slint.dev" target="_blank" rel="noopener"><b>Slint</b><span>GPL-3.0</span></a>
+        <a class="chip" href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener"><b>yt-dlp</b><span>Unlicense</span></a>
+        <a class="chip" href="https://ffmpeg.org" target="_blank" rel="noopener"><b>FFmpeg</b><span>GPL</span></a>
+        <a class="chip" href="https://catppuccin.com" target="_blank" rel="noopener"><b>Catppuccin</b><span>MIT</span></a>
+        <a class="chip" href="https://github.com/itfoundry/Poppins" target="_blank" rel="noopener"><b>Poppins</b><span>OFL 1.1</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-band">
+    <div class="wrap">
+      <div class="card reveal">
+        <img class="cta-cat" src="/images/tap-tap-cat.gif" alt="" aria-hidden="true">
+        <h2 data-i18n-html="lc.dl_h">Get <span class="hl">LiquidCat</span></h2>
+        <p data-i18n="lc.dl_p">Free and open source. Windows 10 / 11 (64-bit), plus experimental Linux and macOS builds. No Python needed.</p>
+        <a class="btn btn-primary btn-lg" data-download-liquidcat href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg> <span data-i18n="lc.dl_btn">Download LiquidCat</span></a>
+      </div>
+      <p class="notice" data-i18n="notice.legal">This software is not affiliated with nor endorsed by the projects it integrates. Each product uses its tools as dependencies under their respective licenses.</p>
+    </div>
+  </section>
+
+  <footer><div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img src="/images/KittoraLogo2.png" alt="">Kittora</span></div>
+      <p data-i18n="foot.tagline" style="color:var(--overlay0);margin-top:8px;max-width:320px;font-size:13.5px">We build useful, free desktop tools. Open source.</p>
+    </div>
+    <div class="foot-links">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="/meowgnify/" data-i18n="nav.meowgnify">Meowgnify</a>
+      <a href="/credits/" data-i18n="nav.credits">Credits</a>
+      <a href="https://github.com/Kittora" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://kittora.dev" target="_blank" rel="noopener">kittora.dev</a>
+    </div>
+    <p class="foot-note" data-i18n="foot.note">© 2026 Kittora — xjuanfxx &amp; notTao. All products are open source.</p>
+  </div></footer>
+
+  <div class="lightbox" id="lightbox"><img src="" alt=""></div>
+  <script src="/script.js"></script>
+</body>
+</html>
