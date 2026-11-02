@@ -292,10 +292,10 @@ function setupNav() {
   const links = $(".nav-links");
   const ind = $(".nav-ind");
   const moveTo = a => {
-    if (!a || !ind || innerWidth <= 760) { if (ind) ind.style.opacity = 0; return; }
+    if (!a || !ind || innerWidth <= 760) { if (ind) ind.classList.remove("show"); return; }
     ind.style.width = a.offsetWidth + "px";
-    ind.style.transform = `translateX(${a.offsetLeft}px)`;
-    ind.style.opacity = 1;
+    ind.style.left = a.offsetLeft + "px";
+    ind.classList.add("show");
   };
   const active = $(".nav-links a.active");
   if (links) {
@@ -503,7 +503,7 @@ function setupDemos() {
     loopWhileVisible(enc, async () => {
       const c = chips[i];
       pill.style.width = c.offsetWidth + "px"; pill.style.height = c.offsetHeight + "px";
-      pill.style.transform = `translate(${c.offsetLeft}px, ${c.offsetTop}px)`;
+      pill.style.left = c.offsetLeft + "px"; pill.style.top = c.offsetTop + "px";
       chips.forEach((x, j) => x.classList.toggle("on", j === i));
       i = (i + 1) % chips.length;
       await sleep(1100);
@@ -562,7 +562,7 @@ function setupGallery() {
   const place = () => {
     const b = buttons[current];
     pill.style.width = b.offsetWidth + "px";
-    pill.style.transform = `translateX(${b.offsetLeft}px)`;
+    pill.style.left = b.offsetLeft + "px";
   };
   const select = i => {
     current = i;
