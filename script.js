@@ -48,12 +48,13 @@ const I18N_ES = {
   "home.team_label":"Equipo",
   "home.team_h":"Dos amigos, <span class=\"serif\">un estudio.</span>",
   "home.team_sub":"Hacemos las herramientas que queremos usar cada día y las compartimos con todos.",
-  "home.cta_h":"Listo cuando <span class=\"serif accent\">tú lo estés.</span>",
-  "home.cta_p":"LiquidCat es gratis para Windows, Linux y macOS. Sin instalador, sin cuenta y sin Python.",
-  "team.xjuan_role":"Fundador y desarrollador principal",
-  "team.xjuan_p":"Creador de LiquidCat y Meowgnify. Producto, arquitectura y desarrollo.",
-  "team.notao_role":"Desarrollador · optimización · temas",
-  "team.notao_p":"Optimización del código, corrección de errores, temas y soporte de los motores de reescalado.",
+  "home.cta_h":"Descubre nuestros <span class=\"serif accent\">productos.</span>",
+  "home.cta_p":"Gratis, de código abierto y hechos con cariño. Elige uno para empezar.",
+  "pick.lc":"Descarga, convierte y reencodea medios", "pick.mw":"Reescala video e imágenes con IA",
+  "team.xjuan_role":"Fundador · creador de LiquidCat",
+  "team.xjuan_p":"Creó LiquidCat: producto, diseño, arquitectura y desarrollo.",
+  "team.notao_role":"Creador de Meowgnify",
+  "team.notao_p":"Creó Meowgnify y sus motores de reescalado. También ayuda en LiquidCat con optimización, correcciones y temas.",
 
   // LiquidCat
   "lc.h1":"<span class=\"line\"><span>Descarga. Convierte.</span></span><span class=\"line\"><span><span class=\"serif accent\">Ronronea.</span></span></span>",
@@ -75,7 +76,7 @@ const I18N_ES = {
   "lc.t_queue_p":"Encola todos los trabajos que quieras y síguelos en la tarjeta flotante de Actividad. Te avisa con una notificación al terminar.",
   "lc.shots_label":"De cerca",
   "lc.shots_h":"Diseñado hasta <span class=\"serif\">el último píxel.</span>",
-  "lc.shots_sub":"Con Catppuccin Mocha, el tema predeterminado. Haz clic en una captura para verla en grande.",
+  "lc.shots_sub":"Con el nuevo tema Material 3 de LiquidCat 0.4.6. Haz clic en una captura para verla en grande.",
   "lc.shot1":"Descargador", "lc.shot2":"Archivos locales", "lc.shot3":"Cola y actividad", "lc.shot4":"Ajustes",
   "lc.cap1":"Pega un enlace para ver la vista previa, elige el formato y descarga.",
   "lc.cap2":"Convierte varios archivos a la vez y síguelos en la tarjeta flotante de Actividad.",
@@ -366,10 +367,12 @@ function setupPointer() {
   if (wm) {
     addEventListener("pointermove", e => {
       const r = wm.getBoundingClientRect();
-      if (e.clientY < r.top - 200) return;
       wm.style.setProperty("--wx", `${e.clientX - r.left}px`);
       wm.style.setProperty("--wy", `${e.clientY - r.top}px`);
     }, { passive: true });
+    document.documentElement.addEventListener("pointerleave", () => {
+      wm.style.setProperty("--wx", "-9999px"); wm.style.setProperty("--wy", "-9999px");
+    });
   }
 }
 
