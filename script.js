@@ -147,6 +147,17 @@ const I18N_ES = {
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Agrupa eventos que llegan varias veces por fotograma (scroll, raton) en una
+// sola ejecucion por fotograma, con el ultimo evento.
+function perFrame(fn) {
+  let queued = false, last;
+  return e => {
+    last = e;
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; fn(last); });
+  };
+}
 function storageGet(key) { try { return localStorage.getItem(key); } catch { return null; } }
 function storageSet(key, value) { try { localStorage.setItem(key, value); } catch {} }
 const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -289,7 +300,7 @@ function setupNav() {
       progress.style.setProperty("--scroll", max > 0 ? scrollY / max : 0);
     }
   };
-  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("scroll", perFrame(onScroll), { passive: true });
   onScroll();
 
   // Reflejo del cristal que sigue al raton por la barra.
@@ -366,16 +377,14 @@ function setupGlass() {
   svg.style.position = "absolute";
   svg.innerHTML = '<filter id="lg-refract" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">'
     + '<feImage result="map" preserveAspectRatio="none"/>'
-    // Un desplazamiento por canal, cada uno algo distinto: separa un poco los
-    // colores en el canto, como la dispersion de un vidrio real.
+    // Dos desplazamientos algo distintos (rojo por un lado, verde y azul por
+    // otro): separan un poco los colores en el canto, como un vidrio real, con
+    // un tercio menos de trabajo que uno por canal.
     + '<feDisplacementMap in="SourceGraphic" in2="map" scale="36" xChannelSelector="R" yChannelSelector="G" result="dr"/>'
     + '<feColorMatrix in="dr" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/>'
-    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="34.5" xChannelSelector="R" yChannelSelector="G" result="dg"/>'
-    + '<feColorMatrix in="dg" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/>'
-    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="33" xChannelSelector="R" yChannelSelector="G" result="db"/>'
-    + '<feColorMatrix in="db" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>'
-    + '<feBlend in="r" in2="g" mode="screen" result="rg"/>'
-    + '<feBlend in="rg" in2="b" mode="screen"/></filter>';
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="33" xChannelSelector="R" yChannelSelector="G" result="dgb"/>'
+    + '<feColorMatrix in="dgb" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="gb"/>'
+    + '<feBlend in="r" in2="gb" mode="screen"/></filter>';
   document.body.appendChild(svg);
   const filter = svg.querySelector("filter"), image = svg.querySelector("feImage");
 
@@ -450,14 +459,14 @@ function setupPointer() {
     const win = $(".window", stage);
     if (!win) return;
     let rest = 0;
-    stage.addEventListener("pointermove", e => {
+    stage.addEventListener("pointermove", perFrame(e => {
       clearTimeout(rest);
       const r = stage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
       win.style.setProperty("--tf", `rotateX(${(.5 - y) * 8}deg) rotateY(${(x - .5) * 10}deg)`);
       win.style.setProperty("--gx", `${x * 100}%`);
       win.style.setProperty("--gy", `${y * 100}%`);
-    });
+    }));
     // Vuelve a plano con la transicion y despues se quita la transformacion,
     // para que en reposo la captura se pinte nitida.
     stage.addEventListener("pointerleave", () => {
@@ -468,21 +477,26 @@ function setupPointer() {
 
   // Foco de luz que sigue al raton en tarjetas.
   $$(".tile, .product").forEach(el => {
-    el.addEventListener("pointermove", e => {
+    el.addEventListener("pointermove", perFrame(e => {
       const r = el.getBoundingClientRect();
       el.style.setProperty("--mx", `${e.clientX - r.left}px`);
       el.style.setProperty("--my", `${e.clientY - r.top}px`);
-    });
+    }));
   });
 
   // El nombre gigante del pie se ilumina donde esta el cursor.
   const wm = $(".wordmark");
   if (wm) {
-    addEventListener("pointermove", e => {
+    // Solo mientras se ve: antes se repintaba entero con cada movimiento del
+    // raton en cualquier parte de la pagina.
+    let seen = false;
+    watch(wm, vis => { seen = vis; });
+    addEventListener("pointermove", perFrame(e => {
+      if (!seen) return;
       const r = wm.getBoundingClientRect();
       wm.style.setProperty("--wx", `${e.clientX - r.left}px`);
       wm.style.setProperty("--wy", `${e.clientY - r.top}px`);
-    }, { passive: true });
+    }), { passive: true });
     document.documentElement.addEventListener("pointerleave", () => {
       wm.style.setProperty("--wx", "-9999px"); wm.style.setProperty("--wy", "-9999px");
     });
@@ -502,7 +516,7 @@ function setupShowcase() {
     win.classList.toggle("flat", p >= 1);
   };
   if (REDUCED) { win.classList.add("flat"); return; }
-  addEventListener("scroll", update, { passive: true });
+  addEventListener("scroll", perFrame(update), { passive: true });
   addEventListener("resize", update);
   update();
 }
