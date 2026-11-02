@@ -3,117 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kittora — Useful, beautiful desktop software</title>
-  <meta name="description" content="Kittora is a small studio building free, open-source desktop apps: LiquidCat (download & convert media) and Meowgnify (AI upscaler, in development).">
+  <title>Kittora — Desktop software, made with care</title>
+  <meta name="description" content="Kittora is a small independent studio making free, open-source desktop apps: LiquidCat (download & convert media) and Meowgnify (AI upscaler, in development).">
   <link rel="canonical" href="https://www.kittora.dev/">
-  <meta name="theme-color" content="#181825">
+  <meta name="theme-color" content="#0b0b10">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kittora">
-  <meta property="og:title" content="Kittora — Useful, beautiful desktop software">
-  <meta property="og:description" content="Free, open-source desktop apps built with care. Native, lightweight and without telemetry.">
+  <meta property="og:title" content="Kittora — Desktop software, made with care">
+  <meta property="og:description" content="Free, open-source desktop apps. Native, lightweight and without telemetry.">
   <meta property="og:url" content="https://www.kittora.dev/">
   <meta property="og:image" content="https://www.kittora.dev/images/Kittora-Logo.png">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="/images/Kittora-Logo.png">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.classList.add("js");try{var a=localStorage.getItem("kittora_accent");if(a)document.documentElement.style.setProperty("--accent",a)}catch(e){}</script>
 </head>
-<body data-title-es="Kittora — Software de escritorio útil y bonito">
+<body data-title-es="Kittora — Software de escritorio hecho con cariño">
+  <div class="progress" aria-hidden="true"></div>
   <nav class="nav"><div class="nav-inner">
-    <a class="brand" href="/"><img src="/images/KittoraLogo2.png" alt=""><span>Kitt<b>ora</b></span></a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <a class="brand" href="/"><img src="/images/KittoraLogo2.png" alt="">Kittora</a>
     <div class="nav-links">
+      <span class="nav-ind" aria-hidden="true"></span>
       <a href="/" class="active" data-i18n="nav.home">Home</a>
       <a href="/liquidcat/" data-i18n="nav.liquidcat">LiquidCat</a>
       <a href="/meowgnify/" data-i18n="nav.meowgnify">Meowgnify</a>
       <a href="/credits/" data-i18n="nav.credits">Credits</a>
-      <a class="nav-gh" href="https://github.com/Kittora" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> GitHub</a>
-      <button class="lang-btn" id="langBtn" aria-label="Language / Idioma">ES</button>
+    </div>
+    <div class="nav-actions">
+      <a class="icon-btn gh-link" href="https://github.com/Kittora" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></a>
+      <button class="lang-btn" id="langBtn" aria-label="Language / Idioma"><span>ES</span></button>
+      <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </div></nav>
 
   <main>
   <header class="hero">
-    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-    <img class="mascot m-left" src="/images/melted_cat.gif" alt="" aria-hidden="true">
-    <img class="mascot m-right" src="/images/flying-cat.gif" alt="" aria-hidden="true">
-    <img class="hero-logo brandmark" src="/images/Kittora-Logo.png" alt="Kittora — Code. Create. Purr.">
-    <h1 data-i18n="home.h1">Useful, beautiful desktop software.</h1>
-    <p class="lede" data-i18n="home.lede">Kittora is a small independent studio making free, open-source apps for creators. Native, lightweight and without telemetry, built with attention to detail.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary btn-lg" href="#products" data-i18n="home.cta_products">Explore our apps</a>
-      <a class="btn btn-ghost btn-lg" href="https://github.com/Kittora" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> <span data-i18n="btn.github_follow">Follow on GitHub</span></a>
-    </div>
-    <div class="hero-badges">
-      <span class="badge" data-i18n="badge.oss">Open source</span>
-      <span class="badge" data-i18n="badge.free">Free, no ads</span>
-      <span class="badge" data-i18n="badge.notelemetry">No telemetry</span>
-      <span class="badge">Windows · Linux · macOS</span>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <a class="kicker fade-in" style="--d:.05s" href="/liquidcat/"><span class="dot"></span><span data-i18n-html="home.kicker">LiquidCat <span data-version>0.4.6</span> is out</span><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <h1 class="display lines" data-i18n-html="home.h1"><span class="line"><span>Desktop software,</span></span><span class="line"><span><span class="serif accent">made with care.</span></span></span></h1>
+        <p class="lede fade-in" style="--d:.5s" data-i18n="home.lede">Kittora is a small independent studio making free, open-source apps for creators. Native, lightweight and private, with attention to every detail.</p>
+        <div class="hero-cta fade-in" style="--d:.65s">
+          <a class="btn btn-primary btn-lg" href="/liquidcat/#download" data-magnetic><span data-i18n="lc.dl_btn">Download LiquidCat</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost btn-lg" href="#products" data-i18n="home.cta_products">Explore our apps</a>
+        </div>
+        <p class="hero-note fade-in" style="--d:.8s"><span data-i18n="home.note">Free · Open source · No telemetry ·</span> <a href="https://github.com/Kittora" target="_blank" rel="noopener">github.com/Kittora</a></p>
+      </div>
+      <div class="stage fade-in" style="--d:.3s" data-tilt>
+        <img class="peek" src="/images/stretch-cat.gif" alt="" aria-hidden="true">
+        <div class="window"><img src="/images/liquidcat/downloader.png" alt="LiquidCat downloading a video" width="1060" height="816"></div>
+        <div class="float-chip c1"><img src="/images/LiquidCat-Logo.png" alt=""><div><b>LiquidCat</b><span>v<span data-version>0.4.6</span> · <span data-i18n="status.available">Available</span></span></div></div>
+        <div class="float-chip c2"><img src="/images/Meowgnify-Logo.png" alt=""><div><b>Meowgnify</b><span data-i18n="status.dev">In development</span></div></div>
+      </div>
     </div>
   </header>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat" data-reveal><div class="num"><span data-count="2">2</span></div><p data-i18n="stat.apps">apps, one philosophy</p></div>
+        <div class="stat" data-reveal><div class="num"><span data-count="15">15</span></div><p data-i18n="stat.themes">themes, each with its own cat</p></div>
+        <div class="stat" data-reveal><div class="num"><span data-count="6">6</span></div><p data-i18n="stat.langs">languages out of the box</p></div>
+        <div class="stat" data-reveal><div class="num"><span data-count="0">0</span></div><p data-i18n="stat.trackers">trackers, ads or accounts</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- Productos -->
   <section class="section" id="products">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow" data-i18n="home.products_eyebrow">Products</div>
-        <h2 data-i18n-html="home.products_h">Two apps, <span class="hl">one philosophy</span></h2>
-        <p data-i18n="home.products_sub">Powerful inside, simple outside.</p>
+      <div class="label" data-reveal><b>01</b><span data-i18n="home.products_label">Products</span></div>
+      <div class="sec-head">
+        <h2 class="h2" data-reveal data-i18n-html="home.products_h">Two apps, <span class="serif">one philosophy.</span></h2>
+        <p data-reveal data-i18n="home.products_sub">Powerful inside, simple outside. Each app does one job and does it beautifully.</p>
       </div>
-      <div class="grid c2">
-        <article class="card product reveal">
-          <div class="product-top">
-            <img src="/images/LiquidCat-Logo.png" alt="LiquidCat logo">
-            <div>
-              <h3>LiquidCat</h3>
-              <span class="status ok"><span data-i18n="status.available">Available</span>&nbsp;· v<span data-version>0.4.6</span></span>
+      <div class="products">
+        <article class="product" data-reveal>
+          <div class="product-info">
+            <div class="product-id"><img src="/images/LiquidCat-Logo.png" alt=""><div><h3>LiquidCat</h3><span class="status ok"><span data-i18n="status.available">Available</span>&nbsp;· v<span data-version>0.4.6</span></span></div></div>
+            <p data-i18n="home.lc_p">Download, convert and re-encode video and audio in one native app, powered by yt-dlp and FFmpeg.</p>
+            <ul data-i18n-html="home.lc_list">
+              <li>GPU encoding with NVENC, AMF, Quick Sync, VAAPI and VideoToolbox</li>
+              <li>Batch import, queue, history and presets</li>
+              <li>15 themes and 6 languages, on Windows, Linux and macOS</li>
+            </ul>
+            <div class="actions">
+              <a class="btn btn-primary btn-sm" href="/liquidcat/#download" data-i18n="btn.download">Download</a>
+              <a class="btn btn-ghost btn-sm" href="/liquidcat/"><span data-i18n="btn.learn">Learn more</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
           </div>
-          <p data-i18n="home.lc_p">Download, convert and re-encode video and audio in one native Rust app. Powered by yt-dlp and FFmpeg, with GPU acceleration, a job queue, 15 themes and 6 languages.</p>
-          <div class="tags">
-            <span class="tag" data-i18n="tag.download">Download</span>
-            <span class="tag" data-i18n="tag.convert">Convert</span>
-            <span class="tag" data-i18n="tag.gpu">GPU encoding</span>
-            <span class="tag">Windows · Linux · macOS</span>
-          </div>
-          <div class="actions">
-            <a class="btn btn-primary" href="/liquidcat/#download" data-i18n="lc.dl_btn">Download LiquidCat</a>
-            <a class="btn btn-ghost" href="/liquidcat/" data-i18n="btn.learn">Learn more</a>
-          </div>
+          <div class="product-visual stage" data-tilt><div class="window"><img src="/images/liquidcat/converter.png" alt="LiquidCat converting local files" loading="lazy" width="1060" height="657"></div></div>
         </article>
-        <article class="card product reveal">
-          <div class="product-top">
-            <img src="/images/Meowgnify-Logo.png" alt="Meowgnify logo">
-            <div>
-              <h3>Meowgnify</h3>
-              <span class="status dev" data-i18n="status.dev">In development</span>
+        <article class="product" data-reveal>
+          <div class="product-info">
+            <div class="product-id"><img src="/images/Meowgnify-Logo.png" alt=""><div><h3>Meowgnify</h3><span class="status dev" data-i18n="status.dev">In development</span></div></div>
+            <p data-i18n="home.mw_p">Upscale video and images with AI and GPU shaders, and compare the result side by side.</p>
+            <ul data-i18n-html="home.mw_list">
+              <li>Real-ESRGAN, Real-CUGAN, Waifu2x, Anime4K and Upscayl</li>
+              <li>Before/after slider and lens comparison</li>
+              <li>Runs on the GPU with Vulkan, engines download on demand</li>
+            </ul>
+            <div class="actions">
+              <a class="btn btn-ghost btn-sm" href="/meowgnify/"><span data-i18n="btn.learn">Learn more</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
           </div>
-          <p data-i18n="home.mw_p">Upscale video and images with AI and GPU shaders: Real-ESRGAN, Real-CUGAN, Waifu2x, Anime4K and Upscayl, with a before/after comparison.</p>
-          <div class="tags">
-            <span class="tag" data-i18n="tag.upscale">AI upscaling</span>
-            <span class="tag" data-i18n="tag.vulkan">Vulkan GPU</span>
-            <span class="tag" data-i18n="tag.media">Images &amp; video</span>
-          </div>
-          <div class="actions">
-            <a class="btn btn-ghost" href="/meowgnify/" data-i18n="btn.learn">Learn more</a>
+          <div class="product-visual">
+            <div class="ba" data-ba data-src="/images/Meowgnify-Logo.png">
+              <canvas class="before" aria-hidden="true"></canvas>
+              <img class="after" src="/images/Meowgnify-Logo.png" alt="Meowgnify before and after comparison" loading="lazy">
+              <span class="tag l" data-i18n="ba.before">Before</span><span class="tag r" data-i18n="ba.after">After</span>
+              <div class="bar"></div>
+              <div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></div>
+            </div>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Valores -->
-  <section class="section alt">
+  <!-- Principios -->
+  <section class="section">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow" data-i18n="home.values_eyebrow">How we build</div>
-        <h2 data-i18n-html="home.values_h">Small tools, <span class="hl">made with care</span></h2>
+      <div class="label" data-reveal><b>02</b><span data-i18n="home.values_label">Principles</span></div>
+      <div class="sec-head">
+        <h2 class="h2" data-reveal data-i18n-html="home.values_h">Small tools, <span class="serif">big standards.</span></h2>
+        <p data-reveal data-i18n="home.values_sub">What we promise in everything we ship, no matter how small.</p>
       </div>
-      <div class="grid c4">
-        <div class="card value reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div><div data-i18n-html="home.v1"><h3>Open source</h3><p>Every line is public. Read it, build it yourself or help improve it.</p></div></div>
-        <div class="card value reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div data-i18n-html="home.v2"><h3>Private by default</h3><p>No accounts, no ads and no telemetry. Your files never leave your computer.</p></div></div>
-        <div class="card value reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div data-i18n-html="home.v3"><h3>Native &amp; fast</h3><p>Written in Rust, drawn on the GPU and light on memory. No WebView, no Electron.</p></div></div>
-        <div class="card value reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18h1.5a1.5 1.5 0 0 0 0-3H12a2 2 0 0 1 0-4h2a7 7 0 0 0 0-14z"/><circle cx="7.5" cy="10" r="1"/><circle cx="9" cy="6.5" r="1"/><circle cx="14" cy="6.5" r="1"/><circle cx="17" cy="10" r="1"/></svg></div><div data-i18n-html="home.v4"><h3>Designed to enjoy</h3><p>Polished interfaces, themes for every taste and a cat in every corner.</p></div></div>
+      <div class="principles">
+        <div class="principle" data-reveal><span class="n">/01</span><h3 data-i18n="home.v1_h">Open source</h3><p data-i18n="home.v1_p">Every line is public. Read it, build it yourself or help us improve it.</p></div>
+        <div class="principle" data-reveal><span class="n">/02</span><h3 data-i18n="home.v2_h">Private by default</h3><p data-i18n="home.v2_p">No accounts, no ads and no telemetry. Your files never leave your computer.</p></div>
+        <div class="principle" data-reveal><span class="n">/03</span><h3 data-i18n="home.v3_h">Native and fast</h3><p data-i18n="home.v3_p">Written in Rust and drawn on the GPU. No WebView, no Electron, no waiting.</p></div>
+        <div class="principle" data-reveal><span class="n">/04</span><h3 data-i18n="home.v4_h">Made to enjoy</h3><p data-i18n="home.v4_p">Polished interfaces, themes for every taste and a cat in every corner.</p></div>
       </div>
     </div>
   </section>
@@ -121,72 +142,49 @@
   <!-- Equipo -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow" data-i18n="home.team_eyebrow">Team</div>
-        <h2 data-i18n-html="home.team_h">The people <span class="hl">behind Kittora</span></h2>
-        <p data-i18n="home.team_sub">Two friends building software people use every day.</p>
+      <div class="label" data-reveal><b>03</b><span data-i18n="home.team_label">Team</span></div>
+      <div class="sec-head">
+        <h2 class="h2" data-reveal data-i18n-html="home.team_h">Two friends, <span class="serif">one studio.</span></h2>
+        <p data-reveal data-i18n="home.team_sub">We build the tools we want to use every day, and share them with everyone.</p>
       </div>
-      <div class="people">
-        <div class="person reveal">
-          <div class="avatar"><img src="/images/juanfx.png" alt="xjuanfxx" loading="lazy"></div>
-          <h3>xjuanfxx</h3>
-          <div class="who" data-i18n="team.xjuan_role">Founder &amp; lead developer</div>
-          <p data-i18n="team.xjuan_p">Created LiquidCat and Meowgnify. Product idea, architecture and development.</p>
-          <a class="btn btn-ghost" href="https://github.com/xjuanfxx" target="_blank" rel="noopener">@xjuanfxx</a>
+      <div class="team">
+        <div class="member" data-reveal>
+          <div class="av"><img src="/images/juanfx.png" alt="xjuanfxx" loading="lazy"></div>
+          <div><h3>xjuanfxx</h3><div class="role" data-i18n="team.xjuan_role">Founder &amp; lead developer</div><p data-i18n="team.xjuan_p">Created LiquidCat and Meowgnify. Product, architecture and development.</p><a class="gh" href="https://github.com/xjuanfxx" target="_blank" rel="noopener">@xjuanfxx ↗</a></div>
         </div>
-        <div class="person reveal">
-          <div class="avatar"><img src="https://github.com/notTao.png?size=192" alt="notTao" loading="lazy"></div>
-          <h3>notTao</h3>
-          <div class="who" data-i18n="team.notao_role">Developer · optimization · themes</div>
-          <p data-i18n="team.notao_p">Code optimization, bug fixes, themes and upscaler engine support.</p>
-          <a class="btn btn-ghost" href="https://github.com/notTao" target="_blank" rel="noopener">@notTao</a>
+        <div class="member" data-reveal>
+          <div class="av"><img src="https://github.com/notTao.png?size=192" alt="notTao" loading="lazy"></div>
+          <div><h3>notTao</h3><div class="role" data-i18n="team.notao_role">Developer · optimization · themes</div><p data-i18n="team.notao_p">Code optimization, bug fixes, themes and upscaler engine support.</p><a class="gh" href="https://github.com/notTao" target="_blank" rel="noopener">@notTao ↗</a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section cta-band">
+  <section class="final">
     <div class="wrap">
-      <div class="card reveal">
-        <img class="cta-cat" src="/images/tap-tap-cat.gif" alt="" aria-hidden="true">
-        <h2 data-i18n="home.cta_h">Give LiquidCat a try</h2>
-        <p data-i18n="home.cta_p">Free for Windows, Linux and macOS. No installer, no account, no Python.</p>
-        <div class="actions">
-          <a class="btn btn-primary btn-lg" href="/liquidcat/#download" data-i18n="lc.dl_btn">Download LiquidCat</a>
-          <a class="btn btn-ghost btn-lg" href="https://github.com/Kittora/LiquidCat" target="_blank" rel="noopener" data-i18n="btn.source">View source</a>
-        </div>
+      <img class="cat" src="/images/tap-tap-cat.gif" alt="" aria-hidden="true" data-reveal="pop">
+      <h2 class="display" data-reveal data-i18n-html="home.cta_h">Ready when <span class="serif accent">you are.</span></h2>
+      <p class="lede" data-reveal data-i18n="home.cta_p">LiquidCat is free for Windows, Linux and macOS. No installer, no account and no Python.</p>
+      <div class="actions" data-reveal>
+        <a class="btn btn-primary btn-lg" href="/liquidcat/#download" data-magnetic><span data-i18n="lc.dl_btn">Download LiquidCat</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/Kittora/LiquidCat" target="_blank" rel="noopener" data-i18n="btn.source">View source</a>
       </div>
     </div>
   </section>
   </main>
 
-  <footer><div class="foot-inner">
-    <div class="foot-about">
-      <a class="foot-brand" href="/"><img src="/images/KittoraLogo2.png" alt="">Kittora</a>
-      <p data-i18n="foot.tagline">Free, open-source desktop tools for creators, built with care.</p>
+  <footer><div class="wrap">
+    <div class="foot">
+      <div class="foot-about"><a class="brand" href="/"><img src="/images/KittoraLogo2.png" alt="">Kittora</a><p data-i18n="foot.tagline">Free, open-source desktop tools for creators, built with care.</p></div>
+      <div class="foot-col"><h4 data-i18n="foot.products">Products</h4><a href="/liquidcat/">LiquidCat</a><a href="/meowgnify/">Meowgnify</a></div>
+      <div class="foot-col"><h4 data-i18n="foot.resources">Resources</h4><a href="https://github.com/Kittora/LiquidCat/releases" target="_blank" rel="noopener" data-i18n="foot.releases">Releases</a><a href="https://github.com/Kittora/LiquidCat/issues" target="_blank" rel="noopener" data-i18n="foot.bug">Report a bug</a><a href="/credits/" data-i18n="nav.credits">Credits</a></div>
+      <div class="foot-col"><h4>Kittora</h4><a href="https://github.com/Kittora" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/xjuanfxx" target="_blank" rel="noopener">xjuanfxx</a><a href="https://github.com/notTao" target="_blank" rel="noopener">notTao</a></div>
     </div>
-    <div class="foot-col">
-      <h4 data-i18n="foot.products">Products</h4>
-      <a href="/liquidcat/">LiquidCat</a>
-      <a href="/meowgnify/">Meowgnify</a>
-    </div>
-    <div class="foot-col">
-      <h4 data-i18n="foot.resources">Resources</h4>
-      <a href="https://github.com/Kittora/LiquidCat/releases" target="_blank" rel="noopener" data-i18n="foot.releases">Releases</a>
-      <a href="https://github.com/Kittora/LiquidCat/issues" target="_blank" rel="noopener" data-i18n="foot.bug">Report a bug</a>
-      <a href="/credits/" data-i18n="nav.credits">Credits</a>
-    </div>
-    <div class="foot-col">
-      <h4>Kittora</h4>
-      <a href="https://github.com/Kittora" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/xjuanfxx" target="_blank" rel="noopener">xjuanfxx</a>
-      <a href="https://github.com/notTao" target="_blank" rel="noopener">notTao</a>
-    </div>
-    <div class="foot-note"><span data-i18n="foot.note">© 2026 Kittora. All products are open source.</span><span data-i18n="foot.legal">Not affiliated with the projects we integrate.</span></div>
+    <div class="foot-bottom"><span data-i18n="foot.note">© 2026 Kittora · Open source, made with care.</span><span data-i18n="foot.legal">Not affiliated with the projects we integrate.</span></div>
+    <div class="wordmark" aria-hidden="true">kittora</div>
   </div></footer>
 
-  <div class="lightbox" id="lightbox"><img src="" alt=""></div>
+  <div class="lightbox" id="lightbox"><img alt=""><button class="close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <script src="/script.js"></script>
 </body>
 </html>

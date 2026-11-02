@@ -6,7 +6,7 @@
   <title>Credits — Kittora</title>
   <meta name="description" content="The people and open-source projects behind Kittora, LiquidCat and Meowgnify.">
   <link rel="canonical" href="https://www.kittora.dev/credits/">
-  <meta name="theme-color" content="#181825">
+  <meta name="theme-color" content="#0b0b10">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kittora">
   <meta property="og:title" content="Credits — Kittora">
@@ -15,108 +15,102 @@
   <meta property="og:image" content="https://www.kittora.dev/images/Kittora-Logo.png">
   <link rel="icon" href="/images/Kittora-Logo.png">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.classList.add("js");try{var a=localStorage.getItem("kittora_accent");if(a)document.documentElement.style.setProperty("--accent",a)}catch(e){}</script>
 </head>
 <body data-title-es="Créditos — Kittora">
+  <div class="progress" aria-hidden="true"></div>
   <nav class="nav"><div class="nav-inner">
-    <a class="brand" href="/"><img src="/images/KittoraLogo2.png" alt=""><span>Kitt<b>ora</b></span></a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <a class="brand" href="/"><img src="/images/KittoraLogo2.png" alt="">Kittora</a>
     <div class="nav-links">
+      <span class="nav-ind" aria-hidden="true"></span>
       <a href="/" data-i18n="nav.home">Home</a>
       <a href="/liquidcat/" data-i18n="nav.liquidcat">LiquidCat</a>
       <a href="/meowgnify/" data-i18n="nav.meowgnify">Meowgnify</a>
       <a href="/credits/" class="active" data-i18n="nav.credits">Credits</a>
-      <a class="nav-gh" href="https://github.com/Kittora" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> GitHub</a>
-      <button class="lang-btn" id="langBtn" aria-label="Language / Idioma">ES</button>
+    </div>
+    <div class="nav-actions">
+      <a class="icon-btn gh-link" href="https://github.com/Kittora" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></a>
+      <button class="lang-btn" id="langBtn" aria-label="Language / Idioma"><span>ES</span></button>
+      <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </div></nav>
 
   <main>
-  <header class="page-head">
-    <img class="head-cat" src="/images/cute-cat.gif" alt="" aria-hidden="true">
-    <div class="eyebrow" data-i18n="cr.eyebrow">Credits</div>
-    <h1 data-i18n-html="cr.h">Credits &amp; <span class="hl">thanks</span></h1>
-    <p data-i18n="cr.sub">The people and open-source projects behind Kittora.</p>
+  <header class="page-hero">
+    <div class="wrap">
+      <span class="kicker fade-in" style="--d:.05s"><span class="dot"></span><span data-i18n="cr.kicker">Credits &amp; licenses</span></span>
+      <h1 class="display lines" data-i18n-html="cr.h1"><span class="line"><span>Standing on the</span></span><span class="line"><span><span class="serif accent">shoulders of giants.</span></span></span></h1>
+      <p class="lede fade-in" style="--d:.5s" data-i18n="cr.sub">The people who build Kittora and the open-source projects that make our apps possible.</p>
+    </div>
   </header>
 
-  <!-- Equipo -->
   <section class="section tight">
     <div class="wrap">
-      <div class="section-head reveal"><h2 data-i18n-html="cr.people_h">The <span class="hl">team</span></h2></div>
-      <div class="people">
-        <div class="person reveal">
-          <div class="avatar"><img src="/images/juanfx.png" alt="xjuanfxx" loading="lazy"></div>
-          <h3>xjuanfxx</h3>
-          <div class="who" data-i18n="team.xjuan_role">Founder &amp; lead developer</div>
-          <p data-i18n="team.xjuan_p">Created LiquidCat and Meowgnify. Product idea, architecture and development.</p>
-          <a class="btn btn-ghost" href="https://github.com/xjuanfxx" target="_blank" rel="noopener">@xjuanfxx</a>
+      <div class="label" data-reveal><b>01</b><span data-i18n="cr.team_label">Team</span></div>
+      <div class="team">
+        <div class="member" data-reveal>
+          <div class="av"><img src="/images/juanfx.png" alt="xjuanfxx" loading="lazy"></div>
+          <div><h3>xjuanfxx</h3><div class="role" data-i18n="team.xjuan_role">Founder &amp; lead developer</div><p data-i18n="team.xjuan_p">Created LiquidCat and Meowgnify. Product, architecture and development.</p><a class="gh" href="https://github.com/xjuanfxx" target="_blank" rel="noopener">@xjuanfxx ↗</a></div>
         </div>
-        <div class="person reveal">
-          <div class="avatar"><img src="https://github.com/notTao.png?size=192" alt="notTao" loading="lazy"></div>
-          <h3>notTao</h3>
-          <div class="who" data-i18n="team.notao_role">Developer · optimization · themes</div>
-          <p data-i18n="team.notao_p">Code optimization, bug fixes, themes and upscaler engine support.</p>
-          <a class="btn btn-ghost" href="https://github.com/notTao" target="_blank" rel="noopener">@notTao</a>
+        <div class="member" data-reveal>
+          <div class="av"><img src="https://github.com/notTao.png?size=192" alt="notTao" loading="lazy"></div>
+          <div><h3>notTao</h3><div class="role" data-i18n="team.notao_role">Developer · optimization · themes</div><p data-i18n="team.notao_p">Code optimization, bug fixes, themes and upscaler engine support.</p><a class="gh" href="https://github.com/notTao" target="_blank" rel="noopener">@notTao ↗</a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Open source -->
-  <section class="section alt">
+  <section class="section">
     <div class="wrap">
-      <div class="section-head reveal">
-        <h2 data-i18n-html="cr.oss_h">Open-source <span class="hl">projects</span></h2>
-        <p data-i18n="cr.oss_sub">Our apps stand on the shoulders of these projects. Each one is used under its own license.</p>
+      <div class="label" data-reveal><b>02</b><span data-i18n="cr.oss_label">Open source</span></div>
+      <div class="sec-head">
+        <h2 class="h2" data-reveal data-i18n-html="cr.oss_h">Built with <span class="serif">great projects.</span></h2>
+        <p data-reveal data-i18n="cr.oss_sub">Each one is used under its own license. Thank you to everyone who maintains them.</p>
       </div>
-      <div class="grid c3">
-        <div class="card credit reveal"><h3>yt-dlp</h3><p data-i18n="cr.ytdlp_p">Media downloader for YouTube and hundreds of other sites.</p><span class="used">LiquidCat</span><p class="meta"><a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">github.com/yt-dlp</a> · Unlicense</p></div>
-        <div class="card credit reveal"><h3>FFmpeg</h3><p data-i18n="cr.ffmpeg_p">Conversion, re-encoding and trimming. Downloaded from official builds, never bundled.</p><span class="used">LiquidCat</span><span class="used">Meowgnify</span><p class="meta"><a href="https://ffmpeg.org" target="_blank" rel="noopener">ffmpeg.org</a> · GPL</p></div>
-        <div class="card credit reveal"><h3>Slint</h3><p data-i18n="cr.slint_p">Native UI toolkit LiquidCat is built with.</p><span class="used">LiquidCat</span><p class="meta"><a href="https://slint.dev" target="_blank" rel="noopener">slint.dev</a> · GPL-3.0</p></div>
-        <div class="card credit reveal"><h3>Skia</h3><p data-i18n="cr.skia_p">2D graphics engine that draws LiquidCat's interface on the GPU.</p><span class="used">LiquidCat</span><p class="meta"><a href="https://skia.org" target="_blank" rel="noopener">skia.org</a> · BSD-3-Clause</p></div>
-        <div class="card credit reveal"><h3>Rust</h3><p data-i18n="cr.rust_p">The language and ecosystem of crates LiquidCat is written in.</p><span class="used">LiquidCat</span><p class="meta"><a href="https://www.rust-lang.org" target="_blank" rel="noopener">rust-lang.org</a> · MIT / Apache-2.0</p></div>
-        <div class="card credit reveal"><h3>Catppuccin</h3><p data-i18n="cr.catppuccin_p">Color palette of the default themes and of this website.</p><span class="used">LiquidCat</span><span class="used">Web</span><p class="meta"><a href="https://catppuccin.com" target="_blank" rel="noopener">catppuccin.com</a> · MIT</p></div>
-        <div class="card credit reveal"><h3>Material 3</h3><p data-i18n="cr.material_p">Design system and color algorithm (material-color-utilities) behind the Material theme.</p><span class="used">LiquidCat</span><p class="meta"><a href="https://m3.material.io" target="_blank" rel="noopener">m3.material.io</a> · Apache-2.0</p></div>
-        <div class="card credit reveal"><h3>Poppins</h3><p data-i18n="cr.poppins_p">Typeface used throughout LiquidCat's interface.</p><span class="used">LiquidCat</span><p class="meta"><a href="https://github.com/itfoundry/Poppins" target="_blank" rel="noopener">github.com/itfoundry</a> · OFL 1.1</p></div>
-        <div class="card credit reveal"><h3>Anime4K</h3><p data-i18n="cr.anime4k_p">Real-time anime upscaling and denoising shaders.</p><span class="used">Meowgnify</span><p class="meta"><a href="https://github.com/bloc97/Anime4K" target="_blank" rel="noopener">github.com/bloc97</a> · MIT</p></div>
-        <div class="card credit reveal"><h3>Real-ESRGAN</h3><p data-i18n="cr.esrgan_p">AI upscaling models and their ncnn-vulkan port.</p><span class="used">Meowgnify</span><p class="meta"><a href="https://github.com/xinntao/Real-ESRGAN" target="_blank" rel="noopener">github.com/xinntao</a> · BSD-3-Clause</p></div>
-        <div class="card credit reveal"><h3>Real-CUGAN · Waifu2x</h3><p data-i18n="cr.cugan_p">ncnn-vulkan ports of Real-CUGAN and Waifu2x.</p><span class="used">Meowgnify</span><p class="meta"><a href="https://github.com/nihui/realcugan-ncnn-vulkan" target="_blank" rel="noopener">github.com/nihui</a> · MIT</p></div>
-        <div class="card credit reveal"><h3>Upscayl · Clarity</h3><p data-i18n="cr.upscayl_p">AI image upscaling engines and models.</p><span class="used">Meowgnify</span><p class="meta"><a href="https://github.com/upscayl/upscayl" target="_blank" rel="noopener">github.com/upscayl</a> · AGPL-3.0</p></div>
+      <div class="filters" data-reveal data-filters>
+        <button class="chip-btn" aria-pressed="true" data-filter="all" data-i18n="cr.all">All</button>
+        <button class="chip-btn" aria-pressed="false" data-filter="lc">LiquidCat</button>
+        <button class="chip-btn" aria-pressed="false" data-filter="mw">Meowgnify</button>
+        <button class="chip-btn" aria-pressed="false" data-filter="web" data-i18n="cr.web">Website</button>
       </div>
+      <div class="credits" data-credits>
+        <div class="credit" data-tags="lc" data-reveal><h3><a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.ytdlp_p">Media downloader for YouTube and hundreds of other sites.</p><div class="used"><span>LiquidCat</span></div><div class="lic">Unlicense</div></div>
+        <div class="credit" data-tags="lc mw" data-reveal><h3><a href="https://ffmpeg.org" target="_blank" rel="noopener">FFmpeg<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.ffmpeg_p">Conversion, re-encoding and trimming. Downloaded from official builds, never bundled.</p><div class="used"><span>LiquidCat</span><span>Meowgnify</span></div><div class="lic">GPL</div></div>
+        <div class="credit" data-tags="lc" data-reveal><h3><a href="https://slint.dev" target="_blank" rel="noopener">Slint<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.slint_p">Native UI toolkit LiquidCat is built with.</p><div class="used"><span>LiquidCat</span></div><div class="lic">GPL-3.0</div></div>
+        <div class="credit" data-tags="lc" data-reveal><h3><a href="https://skia.org" target="_blank" rel="noopener">Skia<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.skia_p">2D graphics engine that draws LiquidCat's interface on the GPU.</p><div class="used"><span>LiquidCat</span></div><div class="lic">BSD-3-Clause</div></div>
+        <div class="credit" data-tags="lc" data-reveal><h3><a href="https://www.rust-lang.org" target="_blank" rel="noopener">Rust<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.rust_p">The language and ecosystem of crates LiquidCat is written in.</p><div class="used"><span>LiquidCat</span></div><div class="lic">MIT / Apache-2.0</div></div>
+        <div class="credit" data-tags="lc web" data-reveal><h3><a href="https://catppuccin.com" target="_blank" rel="noopener">Catppuccin<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.catppuccin_p">Color palettes of the default themes and of this website's accent.</p><div class="used"><span>LiquidCat</span><span>Web</span></div><div class="lic">MIT</div></div>
+        <div class="credit" data-tags="lc" data-reveal><h3><a href="https://m3.material.io" target="_blank" rel="noopener">Material 3<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.material_p">Design system and color algorithm (material-color-utilities) behind the Material theme.</p><div class="used"><span>LiquidCat</span></div><div class="lic">Apache-2.0</div></div>
+        <div class="credit" data-tags="lc" data-reveal><h3><a href="https://github.com/itfoundry/Poppins" target="_blank" rel="noopener">Poppins<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.poppins_p">Typeface used throughout LiquidCat's interface.</p><div class="used"><span>LiquidCat</span></div><div class="lic">OFL 1.1</div></div>
+        <div class="credit" data-tags="mw" data-reveal><h3><a href="https://github.com/bloc97/Anime4K" target="_blank" rel="noopener">Anime4K<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.anime4k_p">Real-time anime upscaling and denoising shaders.</p><div class="used"><span>Meowgnify</span></div><div class="lic">MIT</div></div>
+        <div class="credit" data-tags="mw" data-reveal><h3><a href="https://github.com/xinntao/Real-ESRGAN" target="_blank" rel="noopener">Real-ESRGAN<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.esrgan_p">AI upscaling models and their ncnn-vulkan port.</p><div class="used"><span>Meowgnify</span></div><div class="lic">BSD-3-Clause</div></div>
+        <div class="credit" data-tags="mw" data-reveal><h3><a href="https://github.com/nihui/realcugan-ncnn-vulkan" target="_blank" rel="noopener">Real-CUGAN · Waifu2x<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.cugan_p">ncnn-vulkan ports of Real-CUGAN and Waifu2x.</p><div class="used"><span>Meowgnify</span></div><div class="lic">MIT</div></div>
+        <div class="credit" data-tags="mw" data-reveal><h3><a href="https://github.com/upscayl/upscayl" target="_blank" rel="noopener">Upscayl · Clarity<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.upscayl_p">AI image upscaling engines and models.</p><div class="used"><span>Meowgnify</span></div><div class="lic">AGPL-3.0</div></div>
+        <div class="credit" data-tags="web" data-reveal><h3><a href="https://vercel.com/font" target="_blank" rel="noopener">Geist<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></h3><p data-i18n="cr.geist_p">Typeface of this website, with Instrument Serif for accents.</p><div class="used"><span>Web</span></div><div class="lic">OFL 1.1</div></div>
+      </div>
+      <p class="legal" data-reveal data-i18n="notice.legal">Kittora is not affiliated with or endorsed by the projects it integrates. Each product uses them as dependencies under their respective licenses.</p>
+    </div>
+  </section>
 
-      <p class="notice reveal" data-i18n="notice.legal">Kittora is not affiliated with or endorsed by the projects it integrates. Each product uses them as dependencies under their respective licenses.</p>
-
-      <div class="cat-divider reveal"><img src="/images/stretch-cat.gif" alt="" aria-hidden="true"></div>
-      <p style="text-align:center;color:var(--mauve);font-family:var(--font-display);font-weight:700;font-size:1.1rem" class="reveal" data-i18n="cr.thanks">Thanks for supporting Kittora! 💜</p>
+  <section class="thanks">
+    <div class="wrap">
+      <img src="/images/stretch-cat.gif" alt="" aria-hidden="true" data-reveal="pop">
+      <p data-reveal data-i18n-html="cr.thanks">Thanks for supporting <span class="serif accent">Kittora.</span></p>
     </div>
   </section>
   </main>
 
-  <footer><div class="foot-inner">
-    <div class="foot-about">
-      <a class="foot-brand" href="/"><img src="/images/KittoraLogo2.png" alt="">Kittora</a>
-      <p data-i18n="foot.tagline">Free, open-source desktop tools for creators, built with care.</p>
+  <footer><div class="wrap">
+    <div class="foot">
+      <div class="foot-about"><a class="brand" href="/"><img src="/images/KittoraLogo2.png" alt="">Kittora</a><p data-i18n="foot.tagline">Free, open-source desktop tools for creators, built with care.</p></div>
+      <div class="foot-col"><h4 data-i18n="foot.products">Products</h4><a href="/liquidcat/">LiquidCat</a><a href="/meowgnify/">Meowgnify</a></div>
+      <div class="foot-col"><h4 data-i18n="foot.resources">Resources</h4><a href="https://github.com/Kittora/LiquidCat/releases" target="_blank" rel="noopener" data-i18n="foot.releases">Releases</a><a href="https://github.com/Kittora/LiquidCat/issues" target="_blank" rel="noopener" data-i18n="foot.bug">Report a bug</a><a href="/credits/" data-i18n="nav.credits">Credits</a></div>
+      <div class="foot-col"><h4>Kittora</h4><a href="https://github.com/Kittora" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/xjuanfxx" target="_blank" rel="noopener">xjuanfxx</a><a href="https://github.com/notTao" target="_blank" rel="noopener">notTao</a></div>
     </div>
-    <div class="foot-col">
-      <h4 data-i18n="foot.products">Products</h4>
-      <a href="/liquidcat/">LiquidCat</a>
-      <a href="/meowgnify/">Meowgnify</a>
-    </div>
-    <div class="foot-col">
-      <h4 data-i18n="foot.resources">Resources</h4>
-      <a href="https://github.com/Kittora/LiquidCat/releases" target="_blank" rel="noopener" data-i18n="foot.releases">Releases</a>
-      <a href="https://github.com/Kittora/LiquidCat/issues" target="_blank" rel="noopener" data-i18n="foot.bug">Report a bug</a>
-      <a href="/credits/" data-i18n="nav.credits">Credits</a>
-    </div>
-    <div class="foot-col">
-      <h4>Kittora</h4>
-      <a href="https://github.com/Kittora" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/xjuanfxx" target="_blank" rel="noopener">xjuanfxx</a>
-      <a href="https://github.com/notTao" target="_blank" rel="noopener">notTao</a>
-    </div>
-    <div class="foot-note"><span data-i18n="foot.note">© 2026 Kittora. All products are open source.</span><span data-i18n="foot.legal">Not affiliated with the projects we integrate.</span></div>
+    <div class="foot-bottom"><span data-i18n="foot.note">© 2026 Kittora · Open source, made with care.</span><span data-i18n="foot.legal">Not affiliated with the projects we integrate.</span></div>
+    <div class="wordmark" aria-hidden="true">kittora</div>
   </div></footer>
 
-  <div class="lightbox" id="lightbox"><img src="" alt=""></div>
   <script src="/script.js"></script>
 </body>
 </html>
