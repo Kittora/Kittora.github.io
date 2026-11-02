@@ -394,6 +394,10 @@ h1, h2, h3 { font-weight:500; letter-spacing:-.035em; line-height:1.04; }
   border:1px solid var(--line-2); color:var(--muted); transition:color .3s, border-color .3s; }
 .enc span svg { width:14px; height:14px; flex:0 0 auto; }
 .enc span.on { color:var(--ink); border-color:transparent; }
+/* Pop elástico al llegar: termina en su tamaño normal (sin fill), así el texto
+   solo se suaviza durante el salto y en reposo queda nítido. */
+.enc span.pop, .enc .enc-pill.pop, .tabs .pill.pop, .tabs button.pop { animation:chip-pop .65s var(--spring); }
+@keyframes chip-pop { 0% { transform:scale(1); } 35% { transform:scale(1.12); } 100% { transform:scale(1); } }
 /* Píldora que salta de chip en chip (la mueve script.js). El texto nunca se
    escala: escalado se veía borroso todo el tiempo que estaba resaltado. */
 .enc .enc-pill { position:absolute; z-index:0; top:0; left:0; border-radius:9px; background:var(--accent); pointer-events:none;

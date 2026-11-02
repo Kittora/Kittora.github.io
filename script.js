@@ -469,6 +469,13 @@ function loopWhileVisible(el, run) {
   });
 }
 
+// Reinicia la animacion de "pop" de un elemento (rebote breve que acaba en reposo).
+function pop(el) {
+  if (REDUCED) return;
+  el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop");
+  el.addEventListener("animationend", () => el.classList.remove("pop"), { once: true });
+}
+
 function setupDemos() {
   if (REDUCED) return;
 
@@ -505,6 +512,7 @@ function setupDemos() {
       pill.style.width = c.offsetWidth + "px"; pill.style.height = c.offsetHeight + "px";
       pill.style.left = c.offsetLeft + "px"; pill.style.top = c.offsetTop + "px";
       chips.forEach((x, j) => x.classList.toggle("on", j === i));
+      pop(c); pop(pill);
       i = (i + 1) % chips.length;
       await sleep(1100);
     });
@@ -564,17 +572,18 @@ function setupGallery() {
     pill.style.width = b.offsetWidth + "px";
     pill.style.left = b.offsetLeft + "px";
   };
-  const select = i => {
+  const select = (i, bounce) => {
     current = i;
     buttons.forEach((b, j) => b.setAttribute("aria-selected", j === i));
     shots.forEach((s, j) => s.classList.toggle("on", j === i));
     cap.textContent = t(shots[i].dataset.cap);
     place();
+    if (bounce) { pop(pill); pop(buttons[i]); }
   };
-  buttons.forEach((b, i) => b.addEventListener("click", () => select(i)));
+  buttons.forEach((b, i) => b.addEventListener("click", () => select(i, true)));
   tabs.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight") { select((current + 1) % buttons.length); buttons[current].focus(); }
-    if (e.key === "ArrowLeft") { select((current - 1 + buttons.length) % buttons.length); buttons[current].focus(); }
+    if (e.key === "ArrowRight") { select((current + 1) % buttons.length, true); buttons[current].focus(); }
+    if (e.key === "ArrowLeft") { select((current - 1 + buttons.length) % buttons.length, true); buttons[current].focus(); }
   });
   addEventListener("resize", place);
   document.addEventListener("langchange", () => requestAnimationFrame(() => select(current)));
