@@ -549,7 +549,7 @@ function setupGallery() {
   const place = () => {
     const b = buttons[current];
     pill.style.width = b.offsetWidth + "px";
-    pill.style.transform = `translateX(${b.offsetLeft - 4}px)`;
+    pill.style.transform = `translateX(${b.offsetLeft}px)`;
   };
   const select = i => {
     current = i;
