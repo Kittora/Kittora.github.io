@@ -278,14 +278,12 @@ function setupNav() {
   const nav = $(".nav");
   if (!nav) return;
   const progress = $(".progress");
-  // Isla: se recoge al bajar pasado el inicio y se despliega al subir.
-  let lastY = scrollY;
+  // Isla: se recoge en cuanto se baja del inicio y solo se despliega sola al
+  // volver arriba del todo (o con el raton encima / al tocarla).
   const onScroll = () => {
     nav.classList.toggle("scrolled", scrollY > 30);
-    const dy = scrollY - lastY;
-    if (scrollY < 240 || dy < -6) nav.classList.remove("island");
-    else if (dy > 6 && !nav.classList.contains("open")) nav.classList.add("island");
-    if (Math.abs(dy) > 6) lastY = scrollY;
+    if (scrollY < 120) nav.classList.remove("island");
+    else if (!nav.classList.contains("open")) nav.classList.add("island");
     if (progress) {
       const max = document.documentElement.scrollHeight - innerHeight;
       progress.style.setProperty("--scroll", max > 0 ? scrollY / max : 0);
@@ -360,11 +358,11 @@ function setupGlass() {
     + '<feImage result="map" preserveAspectRatio="none"/>'
     // Un desplazamiento por canal, cada uno algo distinto: separa un poco los
     // colores en el canto, como la dispersion de un vidrio real.
-    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="70" xChannelSelector="R" yChannelSelector="G" result="dr"/>'
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="36" xChannelSelector="R" yChannelSelector="G" result="dr"/>'
     + '<feColorMatrix in="dr" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/>'
-    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="62" xChannelSelector="R" yChannelSelector="G" result="dg"/>'
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="34.5" xChannelSelector="R" yChannelSelector="G" result="dg"/>'
     + '<feColorMatrix in="dg" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/>'
-    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="54" xChannelSelector="R" yChannelSelector="G" result="db"/>'
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="33" xChannelSelector="R" yChannelSelector="G" result="db"/>'
     + '<feColorMatrix in="db" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>'
     + '<feBlend in="r" in2="g" mode="screen" result="rg"/>'
     + '<feBlend in="rg" in2="b" mode="screen"/></filter>';
@@ -377,8 +375,8 @@ function setupGlass() {
     if (!w || !h || size === `${w}x${h}`) return;
     size = `${w}x${h}`;
     const r = parseFloat(getComputedStyle(glass).borderTopLeftRadius) || 18;
-    // Toda la barra es lente: el canto curva fuerte y el centro queda casi limpio.
-    const band = h / 2;
+    // Solo el canto hace de lente; el centro queda limpio.
+    const band = Math.min(h / 2, 18);
     // Profundidad dentro del rectangulo redondeado (0 en el borde).
     const depth = (x, y) => {
       const qx = Math.abs(x - w / 2) - (w / 2 - r), qy = Math.abs(y - h / 2) - (h / 2 - r);
