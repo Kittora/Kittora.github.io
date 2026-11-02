@@ -393,9 +393,9 @@ function setupGlass() {
       const out = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r;
       return -out;
     };
-    // A media resolucion (el mapa es un degradado suave y feImage lo escala):
-    // asi se puede rehacer en cada fotograma mientras la barra cambia de tamano.
-    const S = 2, cw = Math.ceil(w / S), ch = Math.ceil(h / S);
+    // A un cuarto de resolucion (el mapa es un degradado suave y feImage lo
+    // escala): asi rehacerlo en cada fotograma sale casi gratis incluso a 144 Hz.
+    const S = 4, cw = Math.ceil(w / S), ch = Math.ceil(h / S);
     const c = document.createElement("canvas");
     c.width = cw; c.height = ch;
     const ctx = c.getContext("2d"), img = ctx.createImageData(cw, ch), d = img.data;
@@ -784,9 +784,8 @@ function setupMarquee() {
   $$(".marquee-track").forEach(track => {
     $$(":scope > *", track).forEach(el => { const c = el.cloneNode(true); c.setAttribute("aria-hidden", "true"); c.tabIndex = -1; track.appendChild(c); });
     if (REDUCED) return;
-    // Avanza a velocidad constante pero se pinta en pixeles enteros, asi el
-    // texto no queda a medio pixel; se para con el raton encima y fuera de
-    // pantalla.
+    // Avanza a velocidad constante segun el tiempo real (se adapta a cualquier
+    // frecuencia de monitor); se para con el raton encima y fuera de pantalla.
     const speed = 40;   // px por segundo
     let x = 0, last = 0, hover = false, visible = false;
     track.parentElement.addEventListener("pointerenter", () => { hover = true; });
@@ -799,7 +798,7 @@ function setupMarquee() {
         if (-x >= half) x += half;
       }
       last = now;
-      track.style.transform = `translateX(${Math.round(x)}px)`;
+      track.style.transform = `translate3d(${x.toFixed(2)}px, 0, 0)`;
       requestAnimationFrame(step);
     };
     watch(track.parentElement, vis => {
