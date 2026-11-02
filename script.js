@@ -331,6 +331,67 @@ function setupNav() {
   }
 }
 
+/* ---------------- Barra de cristal con refraccion ----------------
+   Chromium admite un filtro SVG en backdrop-filter: se genera un mapa de
+   desplazamiento del tamano de la barra (rojo = x, verde = y) que empuja hacia
+   dentro lo que hay detras cerca de los bordes, como el canto de un vidrio. */
+function setupGlass() {
+  const glass = $(".nav-inner");
+  const brands = (navigator.userAgentData && navigator.userAgentData.brands) || [];
+  if (!glass || !brands.some(b => /Chromium/.test(b.brand))) return;
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("width", "0"); svg.setAttribute("height", "0"); svg.setAttribute("aria-hidden", "true");
+  svg.style.position = "absolute";
+  svg.innerHTML = '<filter id="lg-refract" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">'
+    + '<feImage result="map" preserveAspectRatio="none"/>'
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="48" xChannelSelector="R" yChannelSelector="G"/></filter>';
+  document.body.appendChild(svg);
+  const filter = svg.querySelector("filter"), image = svg.querySelector("feImage");
+
+  let size = "";
+  const build = () => {
+    const w = Math.round(glass.offsetWidth), h = Math.round(glass.offsetHeight);
+    if (!w || !h || size === `${w}x${h}`) return;
+    size = `${w}x${h}`;
+    const r = parseFloat(getComputedStyle(glass).borderTopLeftRadius) || 18;
+    const band = Math.min(h / 2, 26);
+    // Profundidad dentro del rectangulo redondeado (0 en el borde).
+    const depth = (x, y) => {
+      const qx = Math.abs(x - w / 2) - (w / 2 - r), qy = Math.abs(y - h / 2) - (h / 2 - r);
+      const out = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r;
+      return -out;
+    };
+    const c = document.createElement("canvas");
+    c.width = w; c.height = h;
+    const ctx = c.getContext("2d"), img = ctx.createImageData(w, h), d = img.data;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const k = (y * w + x) * 4, dep = depth(x + .5, y + .5);
+        let R = 128, G = 128;
+        if (dep > 0 && dep < band) {
+          const gx = depth(x + 1.5, y + .5) - depth(x - .5, y + .5);
+          const gy = depth(x + .5, y + 1.5) - depth(x + .5, y - .5);
+          const len = Math.hypot(gx, gy) || 1;
+          const t = 1 - dep / band, s = t * t * 127;
+          R = 128 + (gx / len) * s; G = 128 + (gy / len) * s;
+        }
+        d[k] = R; d[k + 1] = G; d[k + 2] = 128; d[k + 3] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    for (const el of [filter, image]) {
+      el.setAttribute("x", 0); el.setAttribute("y", 0);
+      el.setAttribute("width", w); el.setAttribute("height", h);
+    }
+    image.setAttribute("href", c.toDataURL());
+    glass.classList.add("refract");
+  };
+  build();
+  // La barra cambia de tamano al hacer scroll (se encoge) y con la ventana.
+  new ResizeObserver(build).observe(glass);
+}
+
 /* ---------------- Interacciones con el puntero ---------------- */
 function setupPointer() {
   if (!FINE_POINTER || REDUCED) return;
@@ -743,6 +804,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   setupNav();
+  setupGlass();
   setupReveal();
   setupCounters();
   setupPointer();
