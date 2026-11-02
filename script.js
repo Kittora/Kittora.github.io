@@ -495,9 +495,15 @@ function setupDemos() {
 
   const enc = $('[data-demo="encoders"]');
   if (enc) {
-    const chips = $$("span", enc); let i = 0;
+    const chips = $$(":scope > span", enc); let i = 0;
+    const pill = document.createElement("span");
+    pill.className = "enc-pill"; pill.setAttribute("aria-hidden", "true");
+    enc.prepend(pill);
     loopWhileVisible(enc, async () => {
-      chips.forEach((c, j) => c.classList.toggle("on", j === i));
+      const c = chips[i];
+      pill.style.width = c.offsetWidth + "px"; pill.style.height = c.offsetHeight + "px";
+      pill.style.transform = `translate(${c.offsetLeft}px, ${c.offsetTop}px)`;
+      chips.forEach((x, j) => x.classList.toggle("on", j === i));
       i = (i + 1) % chips.length;
       await sleep(1100);
     });

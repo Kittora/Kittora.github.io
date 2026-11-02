@@ -317,7 +317,7 @@ h1, h2, h3 { font-weight:500; letter-spacing:-.035em; line-height:1.04; }
 .pick { position:relative; display:flex; align-items:center; gap:16px; padding:20px 22px; border-radius:20px; border:1px solid var(--line-2);
   background:color-mix(in srgb, var(--panel) 80%, transparent); backdrop-filter:blur(8px);
   transition:border-color .3s, background .3s, transform .7s var(--spring); }
-.pick:hover { border-color:var(--accent-line); background:color-mix(in srgb, var(--accent) 6%, var(--panel)); transform:translateY(-6px) scale(1.02); }
+.pick:hover { border-color:var(--accent-line); background:color-mix(in srgb, var(--accent) 6%, var(--panel)); transform:translateY(-6px); }
 .pick:active { transform:scale(.97); transition-duration:.15s; }
 .pick img { width:52px; height:52px; border-radius:13px; transition:transform .9s var(--spring); }
 .pick:hover img { transform:rotate(-10deg) scale(1.1); }
@@ -382,9 +382,13 @@ h1, h2, h3 { font-weight:500; letter-spacing:-.035em; line-height:1.04; }
 /* Demo: codificadores */
 .enc { position:relative; display:flex; flex-wrap:wrap; gap:8px; }
 .enc span { position:relative; z-index:1; display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12.5px; padding:7px 11px; border-radius:9px;
-  border:1px solid var(--line-2); color:var(--muted); transition:color .3s, border-color .3s, transform .6s var(--spring); }
+  border:1px solid var(--line-2); color:var(--muted); transition:color .3s, border-color .3s; }
 .enc span svg { width:14px; height:14px; flex:0 0 auto; }
-.enc span.on { color:var(--ink); border-color:var(--accent); background:var(--accent); transform:scale(1.08); }
+.enc span.on { color:var(--ink); border-color:transparent; }
+/* Píldora que salta de chip en chip (la mueve script.js). El texto nunca se
+   escala: escalado se veía borroso todo el tiempo que estaba resaltado. */
+.enc .enc-pill { position:absolute; z-index:0; top:0; left:0; border-radius:9px; background:var(--accent); pointer-events:none;
+  transition:transform .7s var(--spring), width .7s var(--spring), height .7s var(--spring); }
 
 /* Demo: formatos que giran */
 .flipper { display:flex; align-items:center; gap:14px; font-family:var(--mono); font-size:15px; }
