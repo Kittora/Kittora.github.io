@@ -324,6 +324,16 @@ function setupNav() {
     document.addEventListener("langchange", () => requestAnimationFrame(() => moveTo(active)));
   }
 
+  // Ancho de la isla: el logo y su relleno, para que quede centrado.
+  const brand = $(".brand", nav), inner = $(".nav-inner", nav);
+  const islandWidth = () => {
+    if (!brand || !inner) return;
+    const pad = parseFloat(getComputedStyle(inner).paddingLeft) || 14;
+    nav.style.setProperty("--island-w", `${Math.ceil(brand.offsetWidth + pad * 2)}px`);
+  };
+  islandWidth();
+  document.fonts && document.fonts.ready.then(islandWidth);
+
   // En pantallas tactiles no hay hover: tocar la isla la despliega.
   nav.addEventListener("click", e => {
     if (!nav.classList.contains("island") || FINE_POINTER) return;

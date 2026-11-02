@@ -83,7 +83,7 @@ button { font:inherit; color:inherit; background:none; border:0; cursor:pointer;
 /* Centrada con márgenes y no con translateX(-50%): con un ancho impar eso
    dejaba el texto de la barra a medio píxel y se veía borroso. */
 .nav { position:fixed; top:14px; left:0; right:0; margin:0 auto; z-index:120; width:min(calc(100% - 28px), 1080px);
-  transition:top .5s var(--soft), width .75s var(--spring); }
+  transition:top .6s var(--soft), width .6s var(--soft); }
 /* Liquid glass: desenfoque fuerte con saturación, tinte oscuro denso para que
    el contenido de detrás no compita con el texto, borde especular arriba y un
    reflejo que sigue al ratón (--lx, lo pone script.js). */
@@ -701,13 +701,13 @@ main.swapping { opacity:.15; filter:blur(4px); }
     radial-gradient(120% 140% at 100% 100%, rgba(255,255,255,.035), transparent 45%),
     color-mix(in srgb, var(--bg) 52%, transparent);
   backdrop-filter:url(#lg-refract) blur(3px) saturate(160%) brightness(.82);
-  border-color:rgba(255,255,255,.12);
+  border-color:transparent;
   box-shadow:
     inset 0 1px 1px rgba(255,255,255,.22),
     inset 0 -1px 1px rgba(255,255,255,.07),
     inset 0 0 14px rgba(255,255,255,.04),
     0 10px 30px rgba(0,0,0,.35), 0 1px 3px rgba(0,0,0,.25); }
-.nav-inner.refract::before { padding:1.5px;
+.nav-inner.refract::before { padding:1px;
   background:
     radial-gradient(160px 60px at var(--lx, 50%) 0%, rgba(255,255,255,.4), transparent 70%),
     linear-gradient(135deg, rgba(255,255,255,.45), rgba(255,255,255,.05) 28%, rgba(255,255,255,.015) 60%, rgba(255,255,255,.26)); }
@@ -727,11 +727,13 @@ main.swapping { opacity:.15; filter:blur(4px); }
 /* ---------------- Barra tipo isla dinámica ----------------
    Al bajar leyendo se recoge en una píldora con el logo; al pasar el ratón
    (o al subir, o al tocarla en móvil) se despliega con rebote. */
-.nav.island:not(:hover):not(:focus-within) { width:150px; top:10px; }
-.nav.island:not(:hover):not(:focus-within) .nav-inner { height:44px; justify-content:center; padding:0 12px; border-radius:22px; overflow:hidden; }
-.nav.island:not(:hover):not(:focus-within) .brand { margin:0 auto; }
-.nav-links, .nav-actions { transition:opacity .35s var(--out) .12s; }
+.nav.island:not(:hover):not(:focus-within) { width:var(--island-w, 140px); top:10px; }
+.nav.island:not(:hover):not(:focus-within) .nav-inner { height:44px; border-radius:22px; }
+/* Los enlaces no cambian de sitio: la píldora se estrecha y los recorta
+   mientras se desvanecen, así abrir y cerrar son igual de fluidos. */
+.nav-links, .nav-actions { flex:0 0 auto; transition:opacity .3s var(--out) .1s; }
 .nav.island:not(:hover):not(:focus-within) .nav-links,
-.nav.island:not(:hover):not(:focus-within) .nav-actions { opacity:0; pointer-events:none; transition-delay:0s; transition-duration:.15s; position:absolute; right:12px; }
+.nav.island:not(:hover):not(:focus-within) .nav-actions { opacity:0; pointer-events:none; transition-delay:0s; transition-duration:.2s; }
 .nav.island:not(:hover):not(:focus-within) .nav-ind { display:none; }
-.nav .nav-inner { transition:height .55s var(--spring), border-radius .55s var(--spring), box-shadow .3s, padding .55s var(--spring); }
+.nav .nav-inner { transition:height .6s var(--soft), border-radius .6s var(--soft), box-shadow .3s; }
+@media (min-width:761px) { .nav .nav-inner { overflow:clip; } }
