@@ -331,7 +331,8 @@ function setupPointer() {
       const r = el.getBoundingClientRect();
       const x = (e.clientX - r.left - r.width / 2) / r.width;
       const y = (e.clientY - r.top - r.height / 2) / r.height;
-      el.style.transform = `translate(${x * 10}px, ${y * 8}px)`;
+      // Siempre en pixeles enteros: a medio pixel el texto se ve borroso.
+      el.style.transform = `translate(${Math.round(x * 10)}px, ${Math.round(y * 8)}px)`;
     });
     el.addEventListener("pointerleave", () => { el.style.transform = ""; });
   });
@@ -665,6 +666,29 @@ function setupFilters() {
 function setupMarquee() {
   $$(".marquee-track").forEach(track => {
     $$(":scope > *", track).forEach(el => { const c = el.cloneNode(true); c.setAttribute("aria-hidden", "true"); c.tabIndex = -1; track.appendChild(c); });
+    if (REDUCED) return;
+    // Avanza a velocidad constante pero se pinta en pixeles enteros, asi el
+    // texto no queda a medio pixel; se para con el raton encima y fuera de
+    // pantalla.
+    const speed = 40;   // px por segundo
+    let x = 0, last = 0, hover = false, visible = false;
+    track.parentElement.addEventListener("pointerenter", () => { hover = true; });
+    track.parentElement.addEventListener("pointerleave", () => { hover = false; });
+    const step = now => {
+      if (!visible) { last = 0; return; }
+      if (last && !hover) {
+        x -= speed * Math.min(0.05, (now - last) / 1000);
+        const half = track.scrollWidth / 2;
+        if (-x >= half) x += half;
+      }
+      last = now;
+      track.style.transform = `translateX(${Math.round(x)}px)`;
+      requestAnimationFrame(step);
+    };
+    watch(track.parentElement, vis => {
+      const was = visible; visible = vis;
+      if (vis && !was) requestAnimationFrame(step);
+    });
   });
 }
 
