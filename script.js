@@ -76,7 +76,7 @@ const I18N_ES = {
   "lc.t_queue_p":"Encola todos los trabajos que quieras y síguelos en la tarjeta flotante de Actividad. Te avisa con una notificación al terminar.",
   "lc.shots_label":"De cerca",
   "lc.shots_h":"Diseñado hasta <span class=\"serif\">el último píxel.</span>",
-  "lc.shots_sub":"Con el nuevo tema Material 3 de LiquidCat 0.4.6. Haz clic en una captura para verla en grande.",
+  "lc.shots_sub":"LiquidCat 0.4.6 con Catppuccin Mocha, el tema predeterminado. Haz clic en una captura para verla en grande.",
   "lc.shot1":"Descargador", "lc.shot2":"Archivos locales", "lc.shot3":"Cola y actividad", "lc.shot4":"Ajustes",
   "lc.cap1":"Pega un enlace para ver la vista previa, elige el formato y descarga.",
   "lc.cap2":"Convierte varios archivos a la vez y síguelos en la tarjeta flotante de Actividad.",
