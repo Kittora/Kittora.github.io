@@ -278,8 +278,14 @@ function setupNav() {
   const nav = $(".nav");
   if (!nav) return;
   const progress = $(".progress");
+  // Isla: se recoge al bajar pasado el inicio y se despliega al subir.
+  let lastY = scrollY;
   const onScroll = () => {
     nav.classList.toggle("scrolled", scrollY > 30);
+    const dy = scrollY - lastY;
+    if (scrollY < 240 || dy < -6) nav.classList.remove("island");
+    else if (dy > 6 && !nav.classList.contains("open")) nav.classList.add("island");
+    if (Math.abs(dy) > 6) lastY = scrollY;
     if (progress) {
       const max = document.documentElement.scrollHeight - innerHeight;
       progress.style.setProperty("--scroll", max > 0 ? scrollY / max : 0);
@@ -319,6 +325,13 @@ function setupNav() {
     addEventListener("resize", () => moveTo(active));
     document.addEventListener("langchange", () => requestAnimationFrame(() => moveTo(active)));
   }
+
+  // En pantallas tactiles no hay hover: tocar la isla la despliega.
+  nav.addEventListener("click", e => {
+    if (!nav.classList.contains("island") || FINE_POINTER) return;
+    e.preventDefault(); e.stopPropagation();
+    nav.classList.remove("island");
+  }, true);
 
   const burger = $(".burger");
   if (burger) {
@@ -399,7 +412,13 @@ function setupGlass() {
   };
   build();
   // La barra cambia de tamano al hacer scroll (se encoge) y con la ventana.
-  new ResizeObserver(build).observe(glass);
+  let settle = 0;
+  new ResizeObserver(() => {
+    const w = Math.round(glass.offsetWidth), h = Math.round(glass.offsetHeight);
+    for (const el of [filter, image]) { el.setAttribute("width", w); el.setAttribute("height", h); }
+    clearTimeout(settle);
+    settle = setTimeout(build, 160);
+  }).observe(glass);
 }
 
 /* ---------------- Interacciones con el puntero ---------------- */

@@ -83,7 +83,7 @@ button { font:inherit; color:inherit; background:none; border:0; cursor:pointer;
 /* Centrada con márgenes y no con translateX(-50%): con un ancho impar eso
    dejaba el texto de la barra a medio píxel y se veía borroso. */
 .nav { position:fixed; top:14px; left:0; right:0; margin:0 auto; z-index:120; width:min(calc(100% - 28px), 1080px);
-  transition:top .5s var(--soft), width .5s var(--soft); }
+  transition:top .5s var(--soft), width .75s var(--spring); }
 /* Liquid glass: desenfoque fuerte con saturación, tinte oscuro denso para que
    el contenido de detrás no compita con el texto, borde especular arriba y un
    reflejo que sigue al ratón (--lx, lo pone script.js). */
@@ -664,8 +664,8 @@ main.swapping { opacity:.15; filter:blur(4px); }
 }
 
 /* Las capturas miden 1060 px: nunca se amplian por encima de su tamano real. */
-.showcase .window, .gallery { max-width:1062px; margin-left:auto; margin-right:auto; }
-.gallery-cap { max-width:1062px; margin-left:auto; margin-right:auto; }
+.showcase .window, .gallery { max-width:900px; margin-left:auto; margin-right:auto; }
+.gallery-cap { max-width:900px; margin-left:auto; margin-right:auto; text-align:center; }
 .tabs { display:flex; width:fit-content; margin-left:auto; margin-right:auto; }
 
 /* ---------------- Nitidez en reposo ----------------
@@ -722,3 +722,15 @@ main.swapping { opacity:.15; filter:blur(4px); }
 .js .pick[data-reveal="pop"], .js .theme[data-reveal="pop"] {
   transition:opacity .6s var(--out), transform var(--t-spring) var(--spring), border-color .3s, background .3s, color .3s, top .7s var(--spring);
   transition-delay:calc(var(--i, 0) * 70ms), calc(var(--i, 0) * 70ms), 0s, 0s, 0s, 0s; }
+
+/* ---------------- Barra tipo isla dinámica ----------------
+   Al bajar leyendo se recoge en una píldora con el logo; al pasar el ratón
+   (o al subir, o al tocarla en móvil) se despliega con rebote. */
+.nav.island:not(:hover):not(:focus-within) { width:150px; top:10px; }
+.nav.island:not(:hover):not(:focus-within) .nav-inner { height:44px; justify-content:center; padding:0 12px; border-radius:22px; overflow:hidden; }
+.nav.island:not(:hover):not(:focus-within) .brand { margin:0 auto; }
+.nav-links, .nav-actions { transition:opacity .35s var(--out) .12s; }
+.nav.island:not(:hover):not(:focus-within) .nav-links,
+.nav.island:not(:hover):not(:focus-within) .nav-actions { opacity:0; pointer-events:none; transition-delay:0s; transition-duration:.15s; position:absolute; right:12px; }
+.nav.island:not(:hover):not(:focus-within) .nav-ind { display:none; }
+.nav .nav-inner { transition:height .55s var(--spring), border-radius .55s var(--spring), box-shadow .3s, padding .55s var(--spring); }
