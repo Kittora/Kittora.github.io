@@ -345,7 +345,16 @@ function setupGlass() {
   svg.style.position = "absolute";
   svg.innerHTML = '<filter id="lg-refract" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">'
     + '<feImage result="map" preserveAspectRatio="none"/>'
-    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="48" xChannelSelector="R" yChannelSelector="G"/></filter>';
+    // Un desplazamiento por canal, cada uno algo distinto: separa un poco los
+    // colores en el canto, como la dispersion de un vidrio real.
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="70" xChannelSelector="R" yChannelSelector="G" result="dr"/>'
+    + '<feColorMatrix in="dr" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/>'
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="62" xChannelSelector="R" yChannelSelector="G" result="dg"/>'
+    + '<feColorMatrix in="dg" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/>'
+    + '<feDisplacementMap in="SourceGraphic" in2="map" scale="54" xChannelSelector="R" yChannelSelector="G" result="db"/>'
+    + '<feColorMatrix in="db" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>'
+    + '<feBlend in="r" in2="g" mode="screen" result="rg"/>'
+    + '<feBlend in="rg" in2="b" mode="screen"/></filter>';
   document.body.appendChild(svg);
   const filter = svg.querySelector("filter"), image = svg.querySelector("feImage");
 
@@ -355,7 +364,8 @@ function setupGlass() {
     if (!w || !h || size === `${w}x${h}`) return;
     size = `${w}x${h}`;
     const r = parseFloat(getComputedStyle(glass).borderTopLeftRadius) || 18;
-    const band = Math.min(h / 2, 26);
+    // Toda la barra es lente: el canto curva fuerte y el centro queda casi limpio.
+    const band = h / 2;
     // Profundidad dentro del rectangulo redondeado (0 en el borde).
     const depth = (x, y) => {
       const qx = Math.abs(x - w / 2) - (w / 2 - r), qy = Math.abs(y - h / 2) - (h / 2 - r);
@@ -373,7 +383,7 @@ function setupGlass() {
           const gx = depth(x + 1.5, y + .5) - depth(x - .5, y + .5);
           const gy = depth(x + .5, y + 1.5) - depth(x + .5, y - .5);
           const len = Math.hypot(gx, gy) || 1;
-          const t = 1 - dep / band, s = t * t * 127;
+          const t = 1 - dep / band, s = Math.pow(t, 2.2) * 127;
           R = 128 + (gx / len) * s; G = 128 + (gy / len) * s;
         }
         d[k] = R; d[k + 1] = G; d[k + 2] = 128; d[k + 3] = 255;
