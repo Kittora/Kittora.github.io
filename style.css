@@ -391,7 +391,7 @@ h1, h2, h3 { font-weight:500; letter-spacing:-.035em; line-height:1.04; }
 .tile .demo { margin-top:auto; padding-top:26px; }
 
 /* Demo: pegar enlace y descargar */
-.dl-demo { display:grid; gap:12px; }
+.dl-demo { display:grid; grid-template-columns:minmax(0, 1fr); gap:12px; }
 .dl-input { display:flex; align-items:center; gap:10px; height:46px; padding:0 14px; border-radius:12px; border:1px solid var(--line-2);
   background:var(--bg-2); font-family:var(--mono); font-size:13px; color:var(--muted); overflow:hidden; }
 .dl-input svg { width:16px; height:16px; color:var(--dim); flex:0 0 auto; }
@@ -745,5 +745,25 @@ main.swapping { opacity:.15; filter:blur(4px); }
   inset 0 0 0 1px rgba(255,255,255,.10), inset 1px 1px 0 rgba(255,255,255,.30), inset -1px -1px 0 rgba(255,255,255,.16),
   inset 0 0 14px rgba(255,255,255,.04), 0 14px 40px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3); }
 
-/* Cristal ligero del modo adaptativo: sin la lente SVG, el resto igual. */
+/* Cristal ligero (modo por defecto): sin la lente SVG, el resto igual. */
 .nav-inner.refract.lite { backdrop-filter:blur(6px) saturate(160%) brightness(.82); -webkit-backdrop-filter:blur(6px) saturate(160%) brightness(.82); }
+
+/* ---------------- Móvil ---------------- */
+@media (max-width:560px) {
+  /* Botones principales a todo el ancho, uno debajo de otro */
+  .hero-cta, .final .actions { flex-direction:column; align-items:stretch; }
+  .hero-cta .btn, .final .actions .btn { width:100%; }
+  /* Temas en tres columnas y más compactos */
+  .themes { grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; }
+  .theme { padding:14px 6px 10px; font-size:11.5px; }
+  .theme img { width:46px; height:46px; }
+  .dl-input { min-width:0; }
+  .dl-input .typed { min-width:0; text-overflow:ellipsis; }
+  .tile { padding:22px; }
+  .display { letter-spacing:-.03em; }
+}
+@media (max-width:760px) {
+  /* Efectos caros en teléfonos: el halo ya es un degradado suave */
+  .hero-glow { animation:none; filter:none; }
+}
+.dl-demo > * { min-width:0; max-width:100%; }
