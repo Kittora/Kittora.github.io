@@ -84,13 +84,34 @@ button { font:inherit; color:inherit; background:none; border:0; cursor:pointer;
    dejaba el texto de la barra a medio píxel y se veía borroso. */
 .nav { position:fixed; top:14px; left:0; right:0; margin:0 auto; z-index:120; width:min(calc(100% - 28px), 1080px);
   transition:top .5s var(--soft), width .5s var(--soft); }
-.nav-inner { display:flex; align-items:center; gap:8px; height:56px; padding:0 8px 0 14px;
-  border-radius:16px; border:1px solid var(--line-2);
-  background:color-mix(in srgb, var(--bg-2) 72%, transparent);
-  backdrop-filter:blur(18px) saturate(150%); -webkit-backdrop-filter:blur(18px) saturate(150%);
-  box-shadow:0 10px 40px rgba(0,0,0,.35); transition:height .5s var(--soft), box-shadow .3s; }
+/* Liquid glass: desenfoque fuerte con saturación, tinte oscuro denso para que
+   el contenido de detrás no compita con el texto, borde especular arriba y un
+   reflejo que sigue al ratón (--lx, lo pone script.js). */
+.nav-inner { position:relative; display:flex; align-items:center; gap:8px; height:56px; padding:0 8px 0 14px;
+  border-radius:20px; border:1px solid rgba(255,255,255,.10); isolation:isolate;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.02) 55%, rgba(255,255,255,.04)),
+    color-mix(in srgb, var(--bg-2) 88%, transparent);
+  backdrop-filter:blur(32px) saturate(200%) brightness(1.05); -webkit-backdrop-filter:blur(32px) saturate(200%) brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    inset 0 -1px 0 rgba(255,255,255,.04),
+    inset 0 0 0 1px rgba(255,255,255,.03),
+    0 12px 40px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.25);
+  transition:height .5s var(--soft), box-shadow .3s, border-radius .5s var(--soft); }
+/* Borde de luz: un anillo con degradado que brilla más arriba y donde está el cursor */
+.nav-inner::before { content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; padding:1px; pointer-events:none;
+  background:
+    radial-gradient(160px 60px at var(--lx, 50%) 0%, rgba(255,255,255,.55), transparent 70%),
+    linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.05) 40%, rgba(255,255,255,.12));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+/* Reflejo suave dentro del cristal */
+.nav-inner::after { content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; pointer-events:none;
+  background:radial-gradient(260px 120px at var(--lx, 50%) -30%, color-mix(in srgb, var(--accent) 14%, rgba(255,255,255,.10)), transparent 70%); }
 .nav.scrolled { top:8px; width:min(calc(100% - 28px), 980px); }
-.nav.scrolled .nav-inner { height:50px; box-shadow:0 14px 50px rgba(0,0,0,.5); }
+.nav.scrolled .nav-inner { height:50px; border-radius:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.04), 0 16px 50px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.3); }
 .brand { display:flex; align-items:center; gap:9px; font-weight:600; font-size:17px; letter-spacing:-.02em; margin-right:auto; }
 .brand img { width:30px; height:30px; border-radius:50%; transition:transform .9s var(--spring); }
 .brand:hover img { transform:rotate(-14deg) scale(1.12); }
@@ -480,7 +501,7 @@ h1, h2, h3 { font-weight:500; letter-spacing:-.035em; line-height:1.04; }
 .platform.current { border-color:var(--accent-line); box-shadow:0 0 0 4px var(--accent-soft); }
 .platform .rec { position:absolute; top:-11px; left:22px; font-family:var(--mono); font-size:11px; padding:3px 9px; border-radius:999px;
   background:var(--accent); color:var(--ink); transform:scale(0); transition:transform .8s var(--spring) .4s; }
-.platform.current .rec { transform:scale(1); }
+.platform.current .rec { transform:none; }
 .platform-head { display:flex; align-items:center; gap:12px; }
 .platform-head svg { width:24px; height:24px; }
 .platform-head h3 { font-size:1.25rem; letter-spacing:-.02em; }
@@ -624,7 +645,7 @@ main.swapping { opacity:.15; filter:blur(4px); }
   .burger { display:block; }
   .nav.open .nav-links { display:flex; }
   .nav-links { position:absolute; top:calc(100% + 8px); left:0; right:0; flex-direction:column; align-items:stretch; gap:2px; padding:8px;
-    border-radius:16px; border:1px solid var(--line-2); background:var(--bg-2); box-shadow:0 24px 60px rgba(0,0,0,.6);
+    border-radius:18px; border:1px solid rgba(255,255,255,.10); background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02)), color-mix(in srgb, var(--bg-2) 92%, transparent); box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 24px 60px rgba(0,0,0,.6);
     backdrop-filter:blur(18px); transform-origin:50% 0; animation:drop .7s var(--spring); }
   .nav-links a { padding:14px; font-size:16px; opacity:0; animation:fadeup .6s var(--soft) forwards; animation-delay:calc(var(--i, 0) * 50ms + 80ms); }
   .nav-ind { display:none; }

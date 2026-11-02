@@ -288,6 +288,16 @@ function setupNav() {
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // Reflejo del cristal que sigue al raton por la barra.
+  const glass = $(".nav-inner");
+  if (glass && FINE_POINTER && !REDUCED) {
+    glass.addEventListener("pointermove", e => {
+      const r = glass.getBoundingClientRect();
+      glass.style.setProperty("--lx", `${Math.round(e.clientX - r.left)}px`);
+    });
+    glass.addEventListener("pointerleave", () => glass.style.removeProperty("--lx"));
+  }
+
   // Indicador que se desliza bajo el enlace con el raton y vuelve al activo.
   const links = $(".nav-links");
   const ind = $(".nav-ind");
