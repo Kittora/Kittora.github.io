@@ -393,16 +393,20 @@ function setupGlass() {
       const out = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r;
       return -out;
     };
+    // A media resolucion (el mapa es un degradado suave y feImage lo escala):
+    // asi se puede rehacer en cada fotograma mientras la barra cambia de tamano.
+    const S = 2, cw = Math.ceil(w / S), ch = Math.ceil(h / S);
     const c = document.createElement("canvas");
-    c.width = w; c.height = h;
-    const ctx = c.getContext("2d"), img = ctx.createImageData(w, h), d = img.data;
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        const k = (y * w + x) * 4, dep = depth(x + .5, y + .5);
+    c.width = cw; c.height = ch;
+    const ctx = c.getContext("2d"), img = ctx.createImageData(cw, ch), d = img.data;
+    for (let j = 0; j < ch; j++) {
+      for (let i = 0; i < cw; i++) {
+        const x = i * S + S / 2, y = j * S + S / 2;
+        const k = (j * cw + i) * 4, dep = depth(x, y);
         let R = 128, G = 128;
         if (dep > 0 && dep < band) {
-          const gx = depth(x + 1.5, y + .5) - depth(x - .5, y + .5);
-          const gy = depth(x + .5, y + 1.5) - depth(x + .5, y - .5);
+          const gx = depth(x + 1, y) - depth(x - 1, y);
+          const gy = depth(x, y + 1) - depth(x, y - 1);
           const len = Math.hypot(gx, gy) || 1;
           const t = 1 - dep / band, s = Math.pow(t, 2.2) * 127;
           R = 128 + (gx / len) * s; G = 128 + (gy / len) * s;
@@ -420,13 +424,9 @@ function setupGlass() {
   };
   build();
   // La barra cambia de tamano al hacer scroll (se encoge) y con la ventana.
-  let settle = 0;
-  new ResizeObserver(() => {
-    const w = Math.round(glass.offsetWidth), h = Math.round(glass.offsetHeight);
-    for (const el of [filter, image]) { el.setAttribute("width", w); el.setAttribute("height", h); }
-    clearTimeout(settle);
-    settle = setTimeout(build, 160);
-  }).observe(glass);
+  // Se rehace en cada cambio de tamano (un fotograma cada vez), asi lo de
+  // debajo se refracta bien durante toda la animacion de la isla.
+  new ResizeObserver(build).observe(glass);
 }
 
 /* ---------------- Interacciones con el puntero ---------------- */
