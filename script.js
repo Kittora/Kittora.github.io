@@ -612,12 +612,12 @@ function setupDemos() {
     let n = 0;
     loopWhileVisible(dl, async alive => {
       const [url, name] = items[n++ % items.length];
-      row.classList.remove("show", "done"); bar.style.width = "0%";
+      row.classList.remove("show", "done"); bar.style.transform = "scaleX(0)";
       typed.textContent = "";
       for (const ch of url) { if (!alive()) return; typed.textContent += ch; await sleep(38); }
       await sleep(350);
       title.textContent = name; row.classList.add("show");
-      for (let p = 0; p <= 100; p += 4) { if (!alive()) return; bar.style.width = p + "%"; await sleep(70); }
+      for (let p = 0; p <= 100; p += 4) { if (!alive()) return; bar.style.transform = `scaleX(${p / 100})`; await sleep(70); }
       row.classList.add("done");
       await sleep(2000);
     });
@@ -671,10 +671,10 @@ function setupDemos() {
   if (queue) {
     const rows = $$(".q", queue);
     loopWhileVisible(queue, async alive => {
-      rows.forEach(r => { r.classList.remove("run", "ok"); $(".bar i", r).style.width = "0%"; });
+      rows.forEach(r => { r.classList.remove("run", "ok"); $(".bar i", r).style.transform = "scaleX(0)"; });
       for (const r of rows) {
         r.classList.add("run");
-        for (let p = 0; p <= 100; p += 5) { if (!alive()) return; $(".bar i", r).style.width = p + "%"; await sleep(55); }
+        for (let p = 0; p <= 100; p += 5) { if (!alive()) return; $(".bar i", r).style.transform = `scaleX(${p / 100})`; await sleep(55); }
         r.classList.remove("run"); r.classList.add("ok");
         await sleep(250);
       }
