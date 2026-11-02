@@ -391,7 +391,7 @@ function setupGlass() {
   let size = "";
   const build = () => {
     const w = Math.round(glass.offsetWidth), h = Math.round(glass.offsetHeight);
-    if (!w || !h || size === `${w}x${h}`) return;
+    if (!w || !h || size === `${w}x${h}` || glass.classList.contains("lite")) return;
     size = `${w}x${h}`;
     const r = parseFloat(getComputedStyle(glass).borderTopLeftRadius) || 18;
     // Solo el canto hace de lente; el centro queda limpio.
@@ -436,6 +436,41 @@ function setupGlass() {
   // Se rehace en cada cambio de tamano (un fotograma cada vez), asi lo de
   // debajo se refracta bien durante toda la animacion de la isla.
   new ResizeObserver(build).observe(glass);
+  adaptGlass(glass);
+}
+
+/* Modo adaptativo: mientras se hace scroll se miden los fotogramas. Si en este
+   equipo la refraccion provoca tirones seguidos, la barra pasa a un cristal
+   mas ligero (mismo desenfoque, tinte y borde, sin la lente). La decision se
+   recuerda 7 dias y despues se vuelve a probar. */
+function adaptGlass(glass) {
+  const KEY = "kittora_glass_lite", WEEK = 7 * 864e5;
+  // ?glass=full fuerza la lente completa (borra la decision y no se adapta).
+  if (/[?&]glass=full/.test(location.search)) { try { localStorage.removeItem(KEY); } catch {} return; }
+  const saved = +storageGet(KEY) || 0;
+  if (saved && Date.now() - saved < WEEK) { glass.classList.add("lite"); return; }
+  let lastScroll = 0, last = 0, running = false, dts = [];
+  const tick = now => {
+    if (last && now - lastScroll < 150) dts.push(now - last);
+    last = now;
+    if (now - lastScroll < 400) { requestAnimationFrame(tick); return; }
+    running = false; last = 0;
+    if (dts.length < 150) return;          // hace falta un rato de scroll
+    const sorted = [...dts].sort((a, b) => a - b);
+    const frame = sorted[Math.floor(sorted.length * .25)];   // periodo del monitor
+    const slow = dts.filter(d => d > frame * 1.6).length / dts.length;
+    dts = [];
+    if (slow > .05) {
+      glass.classList.add("lite");
+      storageSet(KEY, String(Date.now()));
+      removeEventListener("scroll", onScroll);
+    }
+  };
+  const onScroll = () => {
+    lastScroll = performance.now();
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  };
+  addEventListener("scroll", onScroll, { passive: true });
 }
 
 /* ---------------- Interacciones con el puntero ---------------- */
