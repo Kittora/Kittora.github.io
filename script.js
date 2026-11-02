@@ -340,16 +340,20 @@ function setupPointer() {
   $$("[data-tilt]").forEach(stage => {
     const win = $(".window", stage);
     if (!win) return;
+    let rest = 0;
     stage.addEventListener("pointermove", e => {
+      clearTimeout(rest);
       const r = stage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      win.style.setProperty("--ry", `${(x - .5) * 10}deg`);
-      win.style.setProperty("--rx", `${(.5 - y) * 8}deg`);
+      win.style.setProperty("--tf", `rotateX(${(.5 - y) * 8}deg) rotateY(${(x - .5) * 10}deg)`);
       win.style.setProperty("--gx", `${x * 100}%`);
       win.style.setProperty("--gy", `${y * 100}%`);
     });
+    // Vuelve a plano con la transicion y despues se quita la transformacion,
+    // para que en reposo la captura se pinte nitida.
     stage.addEventListener("pointerleave", () => {
-      win.style.setProperty("--ry", "0deg"); win.style.setProperty("--rx", "0deg");
+      win.style.setProperty("--tf", "rotateX(0deg) rotateY(0deg)");
+      rest = setTimeout(() => win.style.removeProperty("--tf"), 950);
     });
   });
 
@@ -386,8 +390,9 @@ function setupShowcase() {
     const p = Math.min(1, Math.max(0, 1 - (r.top - innerHeight * .2) / (innerHeight * .7)));
     win.style.setProperty("--tilt", `${(1 - p) * 18}deg`);
     win.style.setProperty("--sc", (.92 + p * .08).toFixed(3));
+    win.classList.toggle("flat", p >= 1);
   };
-  if (REDUCED) { win.style.setProperty("--tilt", "0deg"); win.style.setProperty("--sc", 1); return; }
+  if (REDUCED) { win.classList.add("flat"); return; }
   addEventListener("scroll", update, { passive: true });
   addEventListener("resize", update);
   update();
@@ -407,7 +412,8 @@ function setupCompare() {
       const w = box.clientWidth, h = box.clientHeight, dpr = devicePixelRatio || 1;
       canvas.width = w * dpr; canvas.height = h * dpr;
       const ctx = canvas.getContext("2d");
-      const pad = Math.min(w, h) * .08 * 2;
+      // Mismo hueco que la imagen nitida: su padding:8% se mide sobre el ancho.
+      const pad = w * .08 * 2;
       const size = Math.min(w - pad, h - pad) * dpr;
       const small = document.createElement("canvas");
       small.width = small.height = 28;
